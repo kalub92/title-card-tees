@@ -1,0 +1,33 @@
+{%- if template.name == 'product' and product -%}
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "description": {{ product.description | strip_html | json }},
+    "image": [{% for img in product.images %}{{ img | image_url: width: 1200 | prepend: 'https:' | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],
+    "sku": {{ current_variant.sku | json }},
+    "brand": { "@type": "Brand", "name": {{ shop.name | json }} },
+    "offers": {
+      "@type": "Offer",
+      "url": "{{ shop.url }}{{ product.url }}",
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "price": {{ current_variant.price | divided_by: 100.00 | json }},
+      "availability": "{% if current_variant.available %}https://schema.org/InStock{% else %}https://schema.org/SoldOut{% endif %}"
+    }
+  }
+  </script>
+{%- endif -%}
+
+{%- if template.name == 'index' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": "{{ shop.url }}",
+    "logo": "{{ shop.url }}/apple-touch-icon.png"
+  }
+  </script>
+{%- endif -%}

@@ -1,0 +1,50 @@
+<div class="ticker" role="complementary" aria-label="{{ section.settings.aria_label | default: 'Announcements' }}">
+  <div class="ticker-track">
+    {% for block in section.blocks %}
+      <span class="ticker-item">
+        {%- if block.settings.leading_label != blank -%}
+          {{ block.settings.leading_label }}
+          <span class="ticker-dot">●</span>
+        {%- else -%}
+          <span class="ticker-dot">●</span>
+        {%- endif -%}
+        {{ block.settings.text }}
+      </span>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement ticker",
+  "tag": "div",
+  "class": "ticker-section",
+  "settings": [
+    { "type": "text", "id": "aria_label", "label": "Aria label", "default": "Announcements" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Ticker item",
+      "settings": [
+        { "type": "text", "id": "leading_label", "label": "Leading label", "info": "Optional. Renders before the dot." },
+        { "type": "text", "id": "text", "label": "Text", "default": "ONE DROP AT A TIME · WHEN IT'S GONE, IT'S GONE" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "item", "settings": { "leading_label": "NOW AIRING", "text": "SATURDAY MORNING" } },
+      { "type": "item", "settings": { "text": "ONE DROP AT A TIME · WHEN IT'S GONE, IT'S GONE" } },
+      { "type": "item", "settings": { "text": "FREE SHIPPING OVER $125" } },
+      { "type": "item", "settings": { "text": "NEXT DROP · 05.15" } },
+      { "type": "item", "settings": { "leading_label": "NOW AIRING", "text": "SATURDAY MORNING" } },
+      { "type": "item", "settings": { "text": "6 PIECES · 250 EACH · NUMBERED BY HAND" } }
+    ]
+  },
+  "presets": [
+    { "name": "Announcement ticker" }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

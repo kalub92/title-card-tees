@@ -1,0 +1,88 @@
+<style>
+  .contact { padding: 80px 0 120px; }
+  .contact-head { max-width: 780px; margin: 0 auto 50px; }
+  .contact-head .eyebrow {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px; letter-spacing: 0.22em; margin-bottom: 20px;
+  }
+  .contact-head h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 900; letter-spacing: -0.04em; line-height: 0.95;
+    margin-bottom: 18px;
+  }
+  .contact-head p { font-size: 17px; opacity: 0.8; max-width: 540px; }
+
+  .contact-form {
+    max-width: 640px; margin: 0 auto;
+    display: grid; gap: 20px;
+  }
+  .contact-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .contact-success {
+    padding: 18px 22px;
+    background: var(--teal);
+    color: var(--cream);
+    border-radius: 12px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px; letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  .contact-error {
+    padding: 14px 18px; background: var(--tangerine); color: var(--cream);
+    border-radius: 12px; font-size: 13px;
+  }
+  @media (max-width: 900px) { .contact-form .row { grid-template-columns: 1fr; } }
+</style>
+
+<section class="contact">
+  <div class="container">
+    <div class="contact-head">
+      <div class="eyebrow">CONTACT</div>
+      <h1>{{ page.title | default: 'Talk to us.' }}</h1>
+      {%- if page.content != blank -%}
+        <p>{{ page.content }}</p>
+      {%- else -%}
+        <p>Sizing, shipping, or a shirt gone missing. We read every note. Replies come within two business days.</p>
+      {%- endif -%}
+    </div>
+
+    {%- form 'contact', class: 'contact-form' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="contact-success">Message received. We'll be in touch.</div>
+      {%- endif -%}
+      {%- if form.errors -%}
+        <div class="contact-error">
+          {%- for field in form.errors -%}
+            {{ form.errors.messages[field] }}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="row">
+        <div>
+          <label class="field-label" for="contact-name">Name</label>
+          <input class="field-input" id="contact-name" type="text" name="contact[name]" value="{{ form.name }}" required>
+        </div>
+        <div>
+          <label class="field-label" for="contact-email">Email</label>
+          <input class="field-input" id="contact-email" type="email" name="contact[email]" value="{{ form.email }}" required>
+        </div>
+      </div>
+      <div>
+        <label class="field-label" for="contact-order">Order number <span style="opacity:0.5;font-weight:400;letter-spacing:0;">(if relevant)</span></label>
+        <input class="field-input" id="contact-order" type="text" name="contact[order_number]">
+      </div>
+      <div>
+        <label class="field-label" for="contact-body">Message</label>
+        <textarea class="field-input" id="contact-body" name="contact[body]" required>{{ form.body }}</textarea>
+      </div>
+      <div>
+        <button type="submit" class="btn-primary">SEND <span class="arrow">→</span></button>
+      </div>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Contact", "settings": [] }
+{% endschema %}

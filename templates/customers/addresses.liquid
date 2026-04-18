@@ -1,0 +1,53 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<section class="customer-page">
+  <div class="container">
+    <a href="{{ routes.account_url }}" style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;">← Back to account</a>
+    <h1 style="margin-top:20px;">{{ 'customer.addresses.title' | t }}</h1>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-bottom:40px;">
+      {%- for address in customer.addresses -%}
+        <div class="box" style="background:var(--cream-deep);border:1.5px solid var(--ink);padding:22px;border-radius:12px;">
+          {%- if address == customer.default_address -%}
+            <div style="font-family:'Archivo Black',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--tangerine);margin-bottom:10px;">{{ 'customer.addresses.default' | t | upcase }}</div>
+          {%- endif -%}
+          <div style="font-size:14px;line-height:1.7;">{{ address | format_address }}</div>
+          <div style="margin-top:16px;display:flex;gap:14px;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">
+            <a href="#edit-{{ address.id }}" style="text-decoration:underline;">{{ 'customer.addresses.edit' | t }}</a>
+            <form method="post" action="/account/addresses/{{ address.id }}" style="display:inline;">
+              <input type="hidden" name="_method" value="delete">
+              <input type="hidden" name="authenticity_token" value="{{ form.authenticity_token }}">
+              <button type="submit" style="text-decoration:underline;text-transform:uppercase;letter-spacing:0.12em;font-size:12px;color:inherit;">{{ 'customer.addresses.delete' | t }}</button>
+            </form>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <h2>{{ 'customer.addresses.add_new' | t }}</h2>
+    {%- form 'customer_address', customer.new_address, class: 'customer-form' -%}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div><label class="field-label">First name</label><input class="field-input" type="text" name="address[first_name]" value="{{ form.first_name }}"></div>
+        <div><label class="field-label">Last name</label><input class="field-input" type="text" name="address[last_name]" value="{{ form.last_name }}"></div>
+      </div>
+      <div><label class="field-label">Company</label><input class="field-input" type="text" name="address[company]" value="{{ form.company }}"></div>
+      <div><label class="field-label">Address 1</label><input class="field-input" type="text" name="address[address1]" value="{{ form.address1 }}"></div>
+      <div><label class="field-label">Address 2</label><input class="field-input" type="text" name="address[address2]" value="{{ form.address2 }}"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div><label class="field-label">City</label><input class="field-input" type="text" name="address[city]" value="{{ form.city }}"></div>
+        <div><label class="field-label">Postal</label><input class="field-input" type="text" name="address[zip]" value="{{ form.zip }}"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div><label class="field-label">Country</label>{{ form | country_option_tags: class: 'field-input' }}</div>
+        <div><label class="field-label">Province</label><select class="field-input" name="address[province]"></select></div>
+      </div>
+      <div><label class="field-label">Phone</label><input class="field-input" type="tel" name="address[phone]" value="{{ form.phone }}"></div>
+      <label style="display:flex;align-items:center;gap:10px;font-size:14px;">
+        {{ form.set_as_default_checkbox }} Set as default
+      </label>
+      <div class="actions">
+        <button type="submit" class="btn-primary">SAVE ADDRESS</button>
+      </div>
+    {%- endform -%}
+  </div>
+</section>

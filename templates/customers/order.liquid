@@ -1,0 +1,50 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<section class="customer-page">
+  <div class="container">
+    <a href="{{ routes.account_url }}" style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;">← Back to account</a>
+    <h1 style="margin-top:20px;">{{ 'customer.account.order_number' | t }} {{ order.name }}</h1>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:40px;">
+      <div>
+        <div style="font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:0.2em;margin-bottom:6px;">PLACED</div>
+        <div>{{ order.created_at | date: '%b %d, %Y at %I:%M %p' }}</div>
+      </div>
+      <div>
+        <div style="font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:0.2em;margin-bottom:6px;">STATUS</div>
+        <div>{{ order.financial_status_label }} · {{ order.fulfillment_status_label }}</div>
+      </div>
+    </div>
+
+    <table class="customer-table">
+      <thead>
+        <tr>
+          <th>Piece</th>
+          <th>Qty</th>
+          <th style="text-align:right;">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for line in order.line_items -%}
+          <tr>
+            <td>
+              <div style="font-family:'Unbounded',sans-serif;font-weight:800;font-size:16px;">{{ line.title }}</div>
+              {%- unless line.product.has_only_default_variant -%}
+                <div style="font-size:12px;opacity:0.7;">{{ line.variant.title }}</div>
+              {%- endunless -%}
+            </td>
+            <td>{{ line.quantity }}</td>
+            <td style="text-align:right;font-family:'Archivo Black',sans-serif;">{{ line.final_line_price | money_without_trailing_zeros }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+
+    <div style="margin-top:30px;display:grid;gap:8px;max-width:360px;margin-left:auto;font-size:14px;">
+      <div style="display:flex;justify-content:space-between;"><span>Subtotal</span><span>{{ order.subtotal_price | money_without_trailing_zeros }}</span></div>
+      <div style="display:flex;justify-content:space-between;"><span>Shipping</span><span>{{ order.shipping_price | money_without_trailing_zeros }}</span></div>
+      <div style="display:flex;justify-content:space-between;"><span>Tax</span><span>{{ order.tax_price | money_without_trailing_zeros }}</span></div>
+      <div style="display:flex;justify-content:space-between;padding-top:14px;border-top:1.5px solid var(--ink);font-family:'Archivo Black',sans-serif;font-size:18px;"><span>Total</span><span>{{ order.total_price | money_without_trailing_zeros }}</span></div>
+    </div>
+  </div>
+</section>

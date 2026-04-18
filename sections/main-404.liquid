@@ -1,0 +1,33 @@
+<style>
+  .notfound { padding: 120px 0 160px; text-align: center; }
+  .notfound .code {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(100px, 18vw, 220px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--tangerine);
+    margin-bottom: 10px;
+  }
+  .notfound h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    margin-bottom: 16px;
+  }
+  .notfound h1 .ital { font-family:'Fraunces',serif; font-style:italic; font-weight:400; }
+  .notfound p { font-size: 17px; opacity: 0.7; max-width: 460px; margin: 0 auto 36px; }
+</style>
+
+<section class="notfound">
+  <div class="container">
+    <div class="code">404</div>
+    <h1>{{ 'general.404.title' | t }}</h1>
+    <p>{{ 'general.404.subtext' | t }}</p>
+    <a href="{{ routes.root_url }}" class="btn-primary">{{ 'general.404.link' | t | upcase }} <span class="arrow">→</span></a>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "404", "settings": [] }
+{% endschema %}

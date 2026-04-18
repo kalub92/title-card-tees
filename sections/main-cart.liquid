@@ -1,0 +1,117 @@
+<style>
+  .cart-page { padding: 60px 0 120px; }
+  .cart-page h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    margin-bottom: 50px;
+  }
+  .cart-table { width: 100%; border-collapse: collapse; }
+  .cart-table th, .cart-table td {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(21,20,25,0.15);
+    text-align: left;
+    vertical-align: top;
+  }
+  .cart-table th {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 14px;
+  }
+  .cart-table .cell-product { display: grid; grid-template-columns: 80px 1fr; gap: 16px; }
+  .cart-table .cell-product img { border: 1.5px solid var(--ink); width: 80px; height: 80px; object-fit: cover; }
+  .cart-table .name { font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: 17px; margin-bottom: 4px; }
+  .cart-table .variant { font-size: 13px; opacity: 0.65; }
+  .cart-table input[type="number"] {
+    width: 56px; padding: 6px 10px;
+    border: 1.5px solid var(--ink); background: var(--cream);
+    border-radius: 100px; text-align: center; font-family: inherit;
+  }
+  .cart-total-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 32px; border-top: 2px solid var(--ink); margin-top: 24px;
+  }
+  .cart-total-row .total {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 32px;
+  }
+  .cart-page-empty {
+    padding: 80px 0; text-align: center;
+  }
+  .cart-page-empty h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+</style>
+
+<section class="cart-page">
+  <div class="container">
+    {%- if cart.item_count == 0 -%}
+      <div class="cart-page-empty">
+        <h2>{{ 'cart.general.empty' | t }}</h2>
+        <p style="opacity: 0.7; margin-bottom: 28px;">{{ 'cart.general.empty_sub' | t }}</p>
+        <a href="/#drop" class="btn-primary">{{ 'cart.general.continue_shopping' | t }} <span class="arrow">→</span></a>
+      </div>
+    {%- else -%}
+      <h1>{{ 'cart.general.title' | t }}</h1>
+      <form action="{{ routes.cart_url }}" method="post" novalidate>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Piece</th>
+              <th>Qty</th>
+              <th style="text-align:right;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart.items %}
+              <tr>
+                <td>
+                  <div class="cell-product">
+                    {%- if item.image != blank -%}
+                      <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title }}">
+                    {%- else -%}
+                      <div style="width:80px;height:80px;background:var(--{{ item.product.metafields.tct.card_color | default: 'cream-deep' }});border:1.5px solid var(--ink);"></div>
+                    {%- endif -%}
+                    <div>
+                      <a href="{{ item.url }}" class="name">{{ item.product.title }}</a>
+                      {%- unless item.product.has_only_default_variant -%}
+                        <div class="variant">{{ item.variant.title }}</div>
+                      {%- endunless -%}
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+                </td>
+                <td style="text-align:right;">
+                  <div style="font-family:'Archivo Black',sans-serif;">{{ item.final_line_price | money_without_trailing_zeros }}</div>
+                  <a href="{{ item.url_to_remove }}" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.6;">Remove</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="cart-total-row">
+          <div style="font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:0.2em;">{{ 'cart.general.subtotal' | t | upcase }}</div>
+          <div class="total">{{ cart.total_price | money_without_trailing_zeros }}</div>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:flex-end;">
+          <button type="submit" name="update" class="btn-outline">Update bag</button>
+          <button type="submit" name="checkout" class="btn-primary">{{ 'cart.general.checkout' | t | upcase }} <span class="arrow">→</span></button>
+        </div>
+        <p style="margin-top:14px;font-size:12px;opacity:0.6;">{{ 'cart.general.shipping_note' | t }}</p>
+      </form>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

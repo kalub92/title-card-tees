@@ -1,0 +1,53 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<section class="customer-page">
+  <div class="container customer-narrow">
+    <h1>{{ 'customer.login.title' | t }}</h1>
+
+    <div id="login">
+      {%- form 'customer_login', class: 'customer-form' -%}
+        {%- if form.errors -%}
+          <div class="customer-error">
+            {%- for field in form.errors -%}{{ form.errors.messages[field] }}. {%- endfor -%}
+          </div>
+        {%- endif -%}
+        <div>
+          <label class="field-label" for="c-email">{{ 'customer.login.email' | t }}</label>
+          <input class="field-input" id="c-email" type="email" name="customer[email]" autocomplete="email" required>
+        </div>
+        <div>
+          <label class="field-label" for="c-pass">{{ 'customer.login.password' | t }}</label>
+          <input class="field-input" id="c-pass" type="password" name="customer[password]" autocomplete="current-password" required>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn-primary">{{ 'customer.login.sign_in' | t | upcase }}</button>
+          <a href="#recover" style="font-size:13px;opacity:0.7;text-decoration:underline;">{{ 'customer.login.forgot_password' | t }}</a>
+        </div>
+        <div style="font-size:14px;margin-top:14px;">
+          New here? <a href="{{ routes.account_register_url }}" style="text-decoration:underline;">{{ 'customer.login.create_account' | t }}</a>
+        </div>
+      {%- endform -%}
+    </div>
+
+    <div id="recover" style="margin-top: 60px; padding-top: 40px; border-top: 1.5px solid var(--ink);">
+      <h2>{{ 'customer.recover.title' | t }}</h2>
+      <p style="opacity:0.7;margin-bottom:20px;">{{ 'customer.recover.subtext' | t }}</p>
+      {%- form 'recover_customer_password', class: 'customer-form' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="customer-success">Check your inbox for the reset link.</div>
+        {%- endif -%}
+        <div>
+          <label class="field-label" for="r-email">{{ 'customer.recover.email' | t }}</label>
+          <input class="field-input" id="r-email" type="email" name="email" required>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn-outline">{{ 'customer.recover.submit' | t | upcase }}</button>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Login", "settings": [] }
+{% endschema %}

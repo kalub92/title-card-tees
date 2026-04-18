@@ -1,0 +1,43 @@
+{%- if cart.item_count == 0 -%}
+  <div class="cart-empty">
+    <h3>{{ 'cart.general.empty' | t }}</h3>
+    <p>{{ 'cart.general.empty_sub' | t }}</p>
+    <a href="/#drop" class="btn-primary" data-cart-close>{{ 'cart.general.continue_shopping' | t }} <span class="arrow">→</span></a>
+  </div>
+{%- else -%}
+  <div>
+    {% for item in cart.items %}
+      <div class="cart-line" data-cart-line="{{ forloop.index }}">
+        <div class="cart-line-thumb">
+          {%- if item.image != blank -%}
+            <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title }}" width="72" height="72">
+          {%- else -%}
+            <div style="background: var(--{{ item.product.metafields.tct.card_color | default: 'cream-deep' }}); width: 100%; height: 100%;"></div>
+          {%- endif -%}
+        </div>
+        <div>
+          <div class="cart-line-title">{{ item.product.title }}</div>
+          {%- unless item.product.has_only_default_variant -%}
+            <div class="cart-line-variant">{{ item.variant.title }}</div>
+          {%- endunless -%}
+          <div class="cart-line-qty">
+            <label class="visually-hidden" for="qty-{{ forloop.index }}">{{ 'products.product.quantity' | t }}</label>
+            <input type="number" id="qty-{{ forloop.index }}" data-cart-qty="{{ forloop.index }}" value="{{ item.quantity }}" min="0" max="{{ item.variant.inventory_quantity | default: 999 }}">
+            <button type="button" class="cart-line-remove" data-cart-line-remove="{{ forloop.index }}">{{ 'cart.general.remove' | t }}</button>
+          </div>
+        </div>
+        <div class="cart-line-price">{{ item.final_line_price | money_without_trailing_zeros }}</div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="cart-drawer-foot">
+    <div class="subtotal-row">
+      <span class="label">{{ 'cart.general.subtotal' | t }}</span>
+      <span class="value">{{ cart.total_price | money_without_trailing_zeros }}</span>
+    </div>
+    <div class="note">{{ 'cart.general.shipping_note' | t }}</div>
+    <form action="{{ routes.cart_url }}" method="post">
+      <button type="submit" name="checkout" class="btn-primary">{{ 'cart.general.checkout' | t | upcase }} <span class="arrow">→</span></button>
+    </form>
+  </div>
+{%- endif -%}
