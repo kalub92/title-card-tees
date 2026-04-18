@@ -1,0 +1,38 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<section class="customer-page">
+  <div class="container customer-narrow">
+    <h1>{{ 'customer.register.title' | t }}</h1>
+    {%- form 'create_customer', class: 'customer-form' -%}
+      {%- if form.errors -%}
+        <div class="customer-error">
+          {%- for field in form.errors -%}{{ form.errors.messages[field] }}. {%- endfor -%}
+        </div>
+      {%- endif -%}
+      <div>
+        <label class="field-label" for="r-first">{{ 'customer.register.first_name' | t }}</label>
+        <input class="field-input" id="r-first" type="text" name="customer[first_name]" autocomplete="given-name">
+      </div>
+      <div>
+        <label class="field-label" for="r-last">{{ 'customer.register.last_name' | t }}</label>
+        <input class="field-input" id="r-last" type="text" name="customer[last_name]" autocomplete="family-name">
+      </div>
+      <div>
+        <label class="field-label" for="r-email">{{ 'customer.register.email' | t }}</label>
+        <input class="field-input" id="r-email" type="email" name="customer[email]" autocomplete="email" required>
+      </div>
+      <div>
+        <label class="field-label" for="r-pass">{{ 'customer.register.password' | t }}</label>
+        <input class="field-input" id="r-pass" type="password" name="customer[password]" autocomplete="new-password" required>
+      </div>
+      <div class="actions">
+        <button type="submit" class="btn-primary">{{ 'customer.register.submit' | t | upcase }}</button>
+        <a href="{{ routes.account_login_url }}" style="font-size:13px;opacity:0.7;text-decoration:underline;">Already have an account? Log in.</a>
+      </div>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Register", "settings": [] }
+{% endschema %}

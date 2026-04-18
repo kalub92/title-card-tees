@@ -1,0 +1,191 @@
+<style>
+  .next-drop {
+    padding: 140px 0 150px;
+    border-bottom: 2px solid var(--ink);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .nd-shape { position: absolute; pointer-events: none; z-index: 1; }
+  .nd-shape.circle-teal {
+    width: 160px; height: 160px; border-radius: 50%;
+    background: var(--teal); opacity: 0.3; top: 80px; left: -60px;
+  }
+  .nd-shape.circle-mustard {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: var(--mustard); opacity: 0.3; bottom: 100px; right: -40px;
+  }
+  .nd-shape.triangle-rose {
+    width: 0; height: 0;
+    border-left: 24px solid transparent;
+    border-right: 24px solid transparent;
+    border-bottom: 42px solid var(--rose);
+    opacity: 0.5; top: 130px; right: 8%;
+    transform: rotate(24deg);
+  }
+  .nd-shape.squiggle-small {
+    top: 240px; left: 6%; width: 90px; opacity: 0.7;
+  }
+  .nd-kicker {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 12px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 700;
+    margin-bottom: 30px; position: relative; z-index: 2;
+  }
+  .nd-kicker::before, .nd-kicker::after {
+    content: ""; width: 48px; height: 1px; background: var(--ink);
+  }
+  .nd-kicker .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--tangerine);
+  }
+  .nd-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(56px, 9vw, 128px);
+    font-weight: 900; line-height: 0.9;
+    letter-spacing: -0.045em; margin-bottom: 10px;
+    position: relative; z-index: 2;
+  }
+  .nd-name .ital {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+  }
+  .nd-tagline {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 22px; margin-bottom: 60px; opacity: 0.8;
+    position: relative; z-index: 2;
+  }
+  .countdown {
+    display: inline-grid; grid-template-columns: repeat(4, auto);
+    gap: 14px; margin-bottom: 44px; position: relative; z-index: 2;
+  }
+  .cd-unit {
+    background: var(--ink); color: var(--cream); border-radius: 14px;
+    padding: 28px 36px 22px; min-width: 130px;
+  }
+  .cd-unit .num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(48px, 6vw, 78px);
+    line-height: 0.95; letter-spacing: -0.02em; display: block;
+  }
+  .cd-unit .lbl {
+    font-family: 'DM Sans', sans-serif; font-size: 11px;
+    letter-spacing: 0.2em; font-weight: 700;
+    opacity: 0.65; margin-top: 8px; text-transform: uppercase;
+  }
+  .cd-sep {
+    align-self: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 40px; color: var(--tangerine);
+    padding: 0 2px; margin-bottom: 10px;
+  }
+  .nd-date {
+    display: inline-block;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px; letter-spacing: 0.18em;
+    padding: 10px 22px;
+    background: var(--cream-deep);
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+    margin-bottom: 50px; position: relative; z-index: 2;
+  }
+  .nd-date .dot { color: var(--tangerine); margin: 0 10px; }
+  .nd-form {
+    max-width: 540px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto; gap: 12px;
+    position: relative; z-index: 2;
+  }
+  .nd-form input {
+    padding: 18px 26px;
+    border: 2px solid var(--ink); background: var(--cream);
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    border-radius: 100px; letter-spacing: 0.02em;
+  }
+  .nd-form input:focus { outline: none; background: var(--paper); }
+  .nd-form button {
+    background: var(--ink); color: var(--cream);
+    padding: 18px 32px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px; letter-spacing: 0.16em;
+    border-radius: 100px;
+    transition: background 0.2s;
+  }
+  .nd-form button:hover { background: var(--tangerine); }
+  .nd-fineprint {
+    margin-top: 16px; font-size: 12px; opacity: 0.6;
+    letter-spacing: 0.04em; position: relative; z-index: 2;
+  }
+  @media (max-width: 900px) {
+    .next-drop { padding: 80px 0 90px; }
+    .countdown { grid-template-columns: repeat(4, 1fr); gap: 6px; width: 100%; }
+    .cd-unit { min-width: 0; padding: 18px 6px 14px; border-radius: 10px; }
+    .cd-sep { display: none; }
+    .cd-unit .lbl { font-size: 9px; letter-spacing: 0.15em; }
+    .nd-form { grid-template-columns: 1fr; }
+    .nd-shape { display: none; }
+  }
+</style>
+
+{%- assign next_name = settings.next_drop_name -%}
+{%- assign next_words = next_name | split: ' ' -%}
+
+<section class="next-drop">
+  <div class="nd-shape circle-teal"></div>
+  <div class="nd-shape circle-mustard"></div>
+  <div class="nd-shape triangle-rose"></div>
+  <svg class="nd-shape squiggle-small" viewBox="0 0 90 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M6 12 Q18 3, 30 12 T54 12 T78 12 T86 12" stroke="#E8743C" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <div class="container">
+    <div class="nd-kicker">
+      <span>{{ section.settings.kicker_lead | default: 'Up Next' }}</span>
+      <span class="dot"></span>
+      <span>Drop {{ settings.next_drop_number }}</span>
+    </div>
+
+    <h2 class="nd-name">
+      {%- if next_words.size > 1 -%}
+        {{ next_words | first }}<br/><span class="ital">{{ next_words | shift | join: ' ' }}</span>
+      {%- else -%}
+        <span class="ital">{{ next_name }}</span>
+      {%- endif -%}
+    </h2>
+    <p class="nd-tagline">{{ settings.next_drop_tagline }}</p>
+
+    <div class="countdown" data-countdown data-target="{{ settings.next_drop_datetime }}">
+      <div class="cd-unit"><span class="num" data-cd="days">00</span><span class="lbl">Days</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="num" data-cd="hours">00</span><span class="lbl">Hours</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="num" data-cd="minutes">00</span><span class="lbl">Minutes</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="num" data-cd="seconds">00</span><span class="lbl">Seconds</span></div>
+    </div>
+
+    <div class="nd-date">{{ settings.next_drop_date_display }}</div>
+
+    <form class="nd-form" action="/contact#contact_form" method="post" id="next-drop-form" accept-charset="UTF-8">
+      <input type="hidden" name="form_type" value="customer">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="contact[tags]" value="next-drop-reminder, drop-{{ settings.next_drop_number }}">
+      <label class="visually-hidden" for="next-drop-email">Email</label>
+      <input type="email" id="next-drop-email" name="contact[email]" placeholder="{{ 'general.newsletter.placeholder' | t }}" required>
+      <button type="submit">SET REMINDER</button>
+    </form>
+    <div class="nd-fineprint">{{ 'general.newsletter.label' | t }}</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Next drop",
+  "tag": "div",
+  "class": "next-drop-section",
+  "settings": [
+    { "type": "text", "id": "kicker_lead", "label": "Kicker lead", "default": "Up Next" },
+    { "type": "paragraph", "content": "Next drop name, date, and tagline live in theme settings so the ticker, footer, and this section stay in sync." }
+  ],
+  "presets": [
+    { "name": "Next drop" }
+  ]
+}
+{% endschema %}

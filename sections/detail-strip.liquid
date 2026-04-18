@@ -1,0 +1,37 @@
+<div class="detail-strip">
+  <div class="container detail-strip-inner">
+    {% for block in section.blocks %}
+      <div>
+        {{ block.settings.text }}
+        {%- unless forloop.last %} <span class="dot">●</span>{% endunless -%}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Detail strip",
+  "tag": "div",
+  "class": "detail-strip-section",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Detail",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "14 oz COTTON" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "item", "settings": { "text": "14 oz COTTON" } },
+      { "type": "item", "settings": { "text": "LIMITED RUN" } },
+      { "type": "item", "settings": { "text": "NUMBERED BY HAND" } },
+      { "type": "item", "settings": { "text": "SHIPS IN 48 HOURS" } },
+      { "type": "item", "settings": { "text": "FREE RETURNS" } }
+    ]
+  },
+  "presets": [{ "name": "Detail strip" }]
+}
+{% endschema %}

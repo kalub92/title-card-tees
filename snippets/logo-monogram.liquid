@@ -1,0 +1,10 @@
+{%- comment -%}
+  Monogram lockup — TCT inside rounded ink frame with Tangerine squiggle.
+  Used below 120px applications: favicon, app icon, footer sign-off.
+{%- endcomment -%}
+{%- assign logo_size = size | default: 80 -%}
+<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="width: {{ logo_size }}px; height: {{ logo_size }}px;" role="img" aria-label="TCT">
+  <rect x="20" y="50" width="200" height="140" rx="18" fill="#151419"/>
+  <text x="120" y="145" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="82" fill="#F4EDE0" letter-spacing="2">TCT</text>
+  <path d="M55 172 Q75 164, 95 172 T135 172 T175 172 T190 172" stroke="#E8743C" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

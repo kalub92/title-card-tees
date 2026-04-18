@@ -1,0 +1,89 @@
+{%- liquid
+  assign current = settings.current_drop
+  assign is_current = false
+  if current != blank and current.handle == collection.handle
+    assign is_current = true
+  endif
+  assign is_archived = collection.metafields.tct.drop_status
+  if is_archived == 'archived'
+    assign is_current = false
+  endif
+-%}
+
+{%- if is_current == false -%}
+  <section class="collection" style="text-align:center;">
+    <div class="container" style="max-width: 640px;">
+      <span class="pill" style="margin-bottom:24px;">OFF THE AIR</span>
+      <h1 style="font-family:'Unbounded',sans-serif;font-size:clamp(48px,6vw,72px);font-weight:900;letter-spacing:-0.035em;line-height:0.95;margin-bottom:20px;">
+        This drop is <span class="ital">retired.</span>
+      </h1>
+      <p style="font-size:17px;opacity:0.7;max-width:460px;margin:0 auto 36px;">
+        The archive lives with the people who caught it. The current drop is on the homepage.
+      </p>
+      <a href="{{ routes.root_url }}" class="btn-primary">BACK TO THE DROP <span class="arrow">→</span></a>
+    </div>
+  </section>
+{%- else -%}
+  <section class="collection" id="drop">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="label">Now Airing · Drop {{ collection.metafields.tct.drop_number | default: settings.current_drop_number }}</div>
+          <h2>{{ collection.title }}</h2>
+        </div>
+        <div class="meta">
+          <div class="counter">{{ collection.products_count }} PIECES · 250 EACH</div>
+          {%- if collection.description != blank -%}
+            <p>{{ collection.description }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="product-grid">
+        {% paginate collection.products by 24 %}
+          {% for product in collection.products %}
+            {%- capture forloop_str -%}0{{ forloop.index }}{%- endcapture -%}
+            {%- assign pos = forloop_str | slice: -2, 2 -%}
+            {%- capture total_str -%}0{{ collection.products_count }}{%- endcapture -%}
+            {%- assign total_padded = total_str | slice: -2, 2 -%}
+            <article class="product {% unless product.available %}sold-out{% endunless %}" data-product-handle="{{ product.handle }}">
+              <div class="product-slot">
+                <span class="slot-time">{{ product.metafields.tct.slot_time | default: '—' }}</span>
+                <span class="run">{{ product.metafields.tct.run_position | default: pos }} / {{ total_padded }} · {{ product.metafields.tct.run_size | default: 250 }} MADE</span>
+              </div>
+              {%- assign card_color = product.metafields.tct.card_color | default: 'cream' | downcase -%}
+              <a class="product-card card-{{ card_color }}" href="{{ product.url }}" aria-label="{{ product.title }}">
+                {%- if product.metafields.tct.title_card_svg != blank -%}
+                  {{ product.metafields.tct.title_card_svg }}
+                {%- elsif product.featured_image != blank -%}
+                  <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | default: product.title }}" loading="lazy" width="600" height="750">
+                {%- else -%}
+                  <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+                    <rect x="40" y="95" width="200" height="85" rx="10" fill="#151419"/>
+                    <text x="140" y="148" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="26" fill="#F4EDE0">{{ product.title | upcase }}</text>
+                  </svg>
+                {%- endif -%}
+              </a>
+              <div class="product-info">
+                <div class="name">{{ product.title }}</div>
+                <div class="desc">{{ product.metafields.tct.short_desc | default: product.description | strip_html | truncatewords: 16 }}</div>
+                <div class="product-row">
+                  <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                  {%- if product.available -%}
+                    <a href="{{ product.url }}" class="quick-shop">ADD TO BAG</a>
+                  {%- else -%}
+                    <a href="{{ product.url }}" class="quick-shop">NOTIFY WHEN BACK</a>
+                  {%- endif -%}
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        {% endpaginate %}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{ "name": "Collection", "settings": [] }
+{% endschema %}

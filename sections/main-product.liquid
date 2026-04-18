@@ -1,0 +1,302 @@
+<style>
+  .pdp {
+    padding: 60px 0 120px;
+  }
+  .pdp-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .pdp-visual {
+    border: 2px solid var(--ink);
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .pdp-visual .slot-bar {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    padding: 12px 18px;
+    background: var(--cream-deep);
+    border-bottom: 1.5px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pdp-visual .slot-bar .slot-time { color: var(--tangerine); }
+  .pdp-card {
+    aspect-ratio: 4 / 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+  }
+  .pdp-card.card-mustard { background: var(--mustard); }
+  .pdp-card.card-teal { background: var(--teal); }
+  .pdp-card.card-rose { background: var(--rose); }
+  .pdp-card.card-ink { background: var(--ink); }
+  .pdp-card.card-tangerine { background: var(--tangerine); }
+  .pdp-card.card-cream { background: var(--cream-deep); }
+  .pdp-card img { width: 100%; height: 100%; object-fit: contain; }
+
+  .pdp-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .pdp-gallery-thumb {
+    border: 1.5px solid var(--ink);
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--cream-deep);
+  }
+  .pdp-gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  .pdp-info .eyebrow {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    margin-bottom: 14px;
+    display: inline-block;
+    padding: 5px 14px;
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+  }
+  .pdp-info h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(48px, 5.5vw, 72px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin-bottom: 16px;
+  }
+  .pdp-info .pdp-price {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 32px;
+    margin-bottom: 22px;
+    letter-spacing: -0.01em;
+  }
+  .pdp-info .pdp-desc {
+    font-size: 17px;
+    line-height: 1.55;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+
+  .pdp-form fieldset { border: 0; margin: 0 0 28px; padding: 0; }
+  .pdp-form legend {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    margin-bottom: 14px;
+  }
+  .size-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .size-pill input { position: absolute; opacity: 0; pointer-events: none; }
+  .size-pill label {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    border: 1.5px solid var(--ink);
+    padding: 10px 18px;
+    border-radius: 100px;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+  .size-pill input:checked + label { background: var(--ink); color: var(--cream); }
+  .size-pill input[disabled] + label {
+    opacity: 0.35; text-decoration: line-through; cursor: not-allowed;
+  }
+
+  .pdp-cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .pdp-cta button { flex: 1; min-width: 220px; justify-content: center; }
+
+  .pdp-form-error {
+    color: var(--tangerine);
+    font-size: 13px;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+
+  .hangtag-preview {
+    margin-top: 44px;
+    padding: 24px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 12px;
+    max-width: 320px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+  }
+  .hangtag-preview .rows {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    line-height: 1.7;
+  }
+  .hangtag-preview .rows .k { opacity: 0.5; margin-right: 8px; }
+  .hangtag-preview .number {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+  }
+  .hangtag-preview .number .sub { opacity: 0.5; font-size: 16px; }
+
+  .pdp-specs {
+    margin-top: 44px;
+    border-top: 1.5px solid var(--ink);
+    padding-top: 28px;
+  }
+  .pdp-specs dl {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 10px 24px;
+    font-size: 14px;
+  }
+  .pdp-specs dt {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+  .pdp-specs dd { margin: 0; }
+
+  @media (max-width: 900px) {
+    .pdp { padding: 36px 0 80px; }
+    .pdp-grid { grid-template-columns: 1fr; gap: 40px; }
+    .pdp-cta button { min-width: 0; }
+    .pdp-specs dl { grid-template-columns: 1fr; }
+  }
+</style>
+
+{%- assign product = section.settings.product | default: product -%}
+{%- assign card_color = product.metafields.tct.card_color | default: 'cream' | downcase -%}
+{%- assign slot_time = product.metafields.tct.slot_time | default: '—' -%}
+{%- assign run_position = product.metafields.tct.run_position -%}
+{%- assign run_size = product.metafields.tct.run_size | default: 250 -%}
+{%- assign hangtag_prefix = product.metafields.tct.hangtag_prefix | default: '001' -%}
+{%- assign fabric = product.metafields.tct.fabric | default: '14 oz heavyweight cotton' -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<section class="pdp">
+  <div class="container">
+    <div class="pdp-grid">
+      <div>
+        <div class="pdp-visual">
+          <div class="slot-bar">
+            <span class="slot-time">{{ slot_time }}</span>
+            <span class="run">{{ product.metafields.tct.run_position | default: '01' }} · {{ run_size }} MADE</span>
+          </div>
+          <div class="pdp-card card-{{ card_color }}">
+            {%- if product.metafields.tct.title_card_svg != blank -%}
+              {{ product.metafields.tct.title_card_svg }}
+            {%- elsif product.featured_image != blank -%}
+              <img src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.featured_image.alt | default: product.title }}" width="900" height="1125">
+            {%- else -%}
+              <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+                <rect x="40" y="95" width="200" height="85" rx="10" fill="#151419"/>
+                <text x="140" y="148" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="26" fill="#F4EDE0">{{ product.title | upcase }}</text>
+              </svg>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- if product.images.size > 1 -%}
+          <div class="pdp-gallery">
+            {% for image in product.images %}
+              <div class="pdp-gallery-thumb">
+                <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | default: product.title }}" width="200" height="200" loading="lazy">
+              </div>
+            {% endfor %}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="pdp-info">
+        {%- if product.metafields.tct.slot_time != blank -%}
+          <span class="eyebrow">{{ slot_time }} · DROP {{ settings.current_drop_number }}</span>
+        {%- endif -%}
+        <h1>{{ product.title }}</h1>
+        <div class="pdp-price" data-price>{{ current_variant.price | money_without_trailing_zeros }}</div>
+        <div class="pdp-desc">
+          {%- if product.metafields.tct.short_desc != blank -%}
+            {{ product.metafields.tct.short_desc }}
+          {%- else -%}
+            {{ product.description }}
+          {%- endif -%}
+        </div>
+
+        <form class="pdp-form"
+              data-product-form
+              data-variant-form
+              action="{{ routes.cart_add_url }}"
+              method="post"
+              enctype="multipart/form-data"
+              data-variants='{{ product.variants | json | escape }}'>
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <fieldset>
+                <legend>{{ option.name | upcase }}</legend>
+                <div class="size-pills">
+                  {%- for value in option.values -%}
+                    {%- assign id = 'opt-' | append: forloop.parent.index0 | append: '-' | append: forloop.index -%}
+                    <span class="size-pill">
+                      <input type="radio"
+                             id="{{ id }}"
+                             name="option{{ forloop.parent.index0 | plus: 1 }}"
+                             value="{{ value }}"
+                             {% if option.selected_value == value %}checked{% endif %}>
+                      <label for="{{ id }}">{{ value }}</label>
+                    </span>
+                  {%- endfor -%}
+                </div>
+              </fieldset>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+
+          <div class="pdp-cta">
+            <button type="submit" class="btn-primary" {% unless current_variant.available %}disabled{% endunless %}>
+              {%- if current_variant.available -%}ADD TO BAG{%- else -%}SOLD OUT{%- endif -%}
+            </button>
+          </div>
+          <div class="pdp-form-error" data-form-error hidden></div>
+        </form>
+
+        <div class="hangtag-preview" aria-hidden="true">
+          <div class="rows">
+            <div><span class="k">DROP</span>{{ settings.current_drop_number }} · {{ settings.current_drop_name | upcase }}</div>
+            <div><span class="k">PIECE</span>{{ product.title | upcase }}</div>
+            <div><span class="k">FABRIC</span>{{ fabric | upcase }}</div>
+          </div>
+          <div class="number">{{ hangtag_prefix }}<br><span class="sub">/ {{ run_size }}</span></div>
+        </div>
+
+        <div class="pdp-specs">
+          <dl>
+            <dt>Fabric</dt><dd>{{ fabric }}</dd>
+            <dt>Run</dt><dd>Numbered run of {{ run_size }}. When it's gone, it's gone.</dd>
+            <dt>Shipping</dt><dd>Ships in 48 hours. Free over $125.</dd>
+            <dt>Returns</dt><dd>Free returns within 30 days, unworn.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "div",
+  "class": "pdp-section",
+  "settings": []
+}
+{% endschema %}

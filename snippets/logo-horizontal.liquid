@@ -1,0 +1,18 @@
+{%- comment -%}
+  Horizontal primary logo — TITLE CARD TEES wordmark + six-wave squiggle.
+  Accepts: width (number, default 200), treatment (primary|reversed|mono-ink|mono-cream|alt).
+  Brand rule: minimum width 120px; below that, use logo-monogram instead.
+{%- endcomment -%}
+{%- assign logo_width = width | default: 200 -%}
+{%- assign treatment = treatment | default: 'primary' -%}
+{%- case treatment -%}
+  {%- when 'reversed' -%}{%- assign word_fill = '#F4EDE0' -%}{%- assign sq_fill = '#E8743C' -%}
+  {%- when 'mono-ink' -%}{%- assign word_fill = '#151419' -%}{%- assign sq_fill = '#151419' -%}
+  {%- when 'mono-cream' -%}{%- assign word_fill = '#F4EDE0' -%}{%- assign sq_fill = '#F4EDE0' -%}
+  {%- when 'alt' -%}{%- assign word_fill = '#151419' -%}{%- assign sq_fill = '#2F9A95' -%}
+  {%- else -%}{%- assign word_fill = '#151419' -%}{%- assign sq_fill = '#E8743C' -%}
+{%- endcase -%}
+<svg viewBox="0 0 280 54" xmlns="http://www.w3.org/2000/svg" style="width: {{ logo_width }}px; height: auto;" role="img" aria-label="{{ shop.name }}">
+  <text x="140" y="30" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="26" fill="{{ word_fill }}" letter-spacing="-0.5">TITLE CARD TEES</text>
+  <path d="M40 44 Q60 37, 80 44 T120 44 T160 44 T200 44 T240 44" stroke="{{ sq_fill }}" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

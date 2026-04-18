@@ -1,0 +1,100 @@
+<style>
+  .manifesto {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 130px 0;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 100px;
+    align-items: start;
+    position: relative;
+    z-index: 2;
+  }
+  .manifesto .label {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0.7;
+    margin-bottom: 28px;
+  }
+  .manifesto h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(40px, 4.5vw, 58px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .manifesto h3 .ital {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--tangerine);
+  }
+  .manifesto-body p {
+    font-size: 19px;
+    line-height: 1.55;
+    margin-bottom: 26px;
+  }
+  .manifesto-body p:last-child { margin-bottom: 0; }
+  .manifesto-body .pullquote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.35;
+    padding: 28px 0;
+    border-top: 1px solid rgba(244, 237, 224, 0.2);
+    border-bottom: 1px solid rgba(244, 237, 224, 0.2);
+    margin: 40px 0;
+  }
+  .manifesto-shape {
+    position: absolute;
+    right: 5%;
+    bottom: -60px;
+    width: 180px;
+    opacity: 0.08;
+  }
+  @media (max-width: 900px) {
+    .manifesto { padding: 80px 0; }
+    .manifesto-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>
+
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-grid">
+      <div>
+        <div class="label">{{ section.settings.eyebrow | default: 'Est. 2026' }}</div>
+        <h3>{{ settings.manifesto_headline_lead }} <span class="ital">{{ settings.manifesto_headline_italic }}</span></h3>
+      </div>
+      <div class="manifesto-body">
+        <p>{{ settings.manifesto_body }}</p>
+        <div class="pullquote">{{ settings.manifesto_pullquote }}</div>
+        <p>{{ settings.manifesto_close }}</p>
+      </div>
+    </div>
+    <svg class="manifesto-shape" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M10 15 Q35 2, 60 15 T110 15 T160 15 T190 15" stroke="#F4EDE0" stroke-width="8" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Manifesto",
+  "tag": "div",
+  "class": "manifesto-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Est. 2026" },
+    { "type": "paragraph", "content": "Manifesto headline and body live in theme settings — editing here affects this placement only." }
+  ],
+  "presets": [
+    { "name": "Manifesto" }
+  ]
+}
+{% endschema %}

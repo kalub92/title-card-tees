@@ -1,0 +1,73 @@
+<style>
+  .search-page { padding: 60px 0 120px; }
+  .search-head { max-width: 780px; margin: 0 auto 50px; }
+  .search-head h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 900; letter-spacing: -0.035em; margin-bottom: 24px;
+  }
+  .search-form { display: flex; gap: 10px; max-width: 640px; }
+  .search-form input { flex: 1; }
+  .search-results { max-width: 980px; margin: 0 auto; }
+  .search-result {
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(21,20,25,0.12);
+    display: grid; grid-template-columns: 80px 1fr auto;
+    gap: 20px; align-items: center;
+  }
+  .search-result img { width: 80px; height: 80px; border: 1.5px solid var(--ink); object-fit: cover; }
+  .search-result .name { font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: 18px; }
+  .search-empty { text-align: center; padding: 60px 0; opacity: 0.7; }
+</style>
+
+<section class="search-page">
+  <div class="container">
+    <div class="search-head">
+      <h1>{{ 'general.search.title' | t }}</h1>
+      <form action="{{ routes.search_url }}" method="get" class="search-form" role="search">
+        <input type="search" name="q" class="field-input" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms }}" required>
+        <button type="submit" class="btn-primary">{{ 'general.search.submit' | t | upcase }}</button>
+      </form>
+    </div>
+
+    <div class="search-results">
+      {%- if search.performed -%}
+        {%- if search.results_count == 0 -%}
+          <div class="search-empty">{{ 'general.search.no_results' | t }}</div>
+        {%- else -%}
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              <a href="{{ item.url }}" class="search-result">
+                {%- if item.featured_image != blank -%}
+                  <img src="{{ item.featured_image | image_url: width: 160 }}" alt="{{ item.title }}">
+                {%- else -%}
+                  <div style="width:80px;height:80px;background:var(--cream-deep);border:1.5px solid var(--ink);"></div>
+                {%- endif -%}
+                <div>
+                  <div class="name">{{ item.title }}</div>
+                  {%- if item.metafields.tct.short_desc != blank -%}
+                    <div style="font-size:13px;opacity:0.7;">{{ item.metafields.tct.short_desc }}</div>
+                  {%- endif -%}
+                </div>
+                <div style="font-family:'Archivo Black',sans-serif;font-size:18px;">{{ item.price | money_without_trailing_zeros }}</div>
+              </a>
+            {%- elsif item.object_type == 'page' or item.object_type == 'article' -%}
+              <a href="{{ item.url }}" class="search-result">
+                <div style="width:80px;height:80px;background:var(--cream-deep);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:0.15em;">PAGE</div>
+                <div>
+                  <div class="name">{{ item.title }}</div>
+                  <div style="font-size:13px;opacity:0.7;">{{ item.content | strip_html | truncatewords: 22 }}</div>
+                </div>
+                <div></div>
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

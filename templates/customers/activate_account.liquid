@@ -1,0 +1,21 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<section class="customer-page">
+  <div class="container customer-narrow">
+    <h1>Activate account.</h1>
+    <p style="opacity:0.7;margin-bottom:24px;">Set a password and you're in.</p>
+    {%- form 'activate_customer_password', class: 'customer-form' -%}
+      {%- if form.errors -%}
+        <div class="customer-error">
+          {%- for field in form.errors -%}{{ form.errors.messages[field] }}. {%- endfor -%}
+        </div>
+      {%- endif -%}
+      <div><label class="field-label">Password</label><input class="field-input" type="password" name="customer[password]" required></div>
+      <div><label class="field-label">Confirm</label><input class="field-input" type="password" name="customer[password_confirmation]" required></div>
+      <div class="actions">
+        <button type="submit" class="btn-primary">ACTIVATE</button>
+        <button type="submit" name="decline" class="btn-outline">Decline invitation</button>
+      </div>
+    {%- endform -%}
+  </div>
+</section>

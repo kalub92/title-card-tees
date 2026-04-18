@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-airing",
+      "settings": {
+        "headline_lead": "Saturday",
+        "headline_middle": "morning,",
+        "headline_italic": "properly",
+        "headline_tail": "dressed.",
+        "lead": "Six pieces for the holy ritual. Heavyweight cotton, numbered runs of 250, inspired by the title cards that shaped an entire generation's Saturday.",
+        "cta_label": "SHOP THE DROP",
+        "meta_text": "One drop. When it's gone, it's gone.",
+        "slot_time": "06:00 AM",
+        "est_text": "EST. 2026"
+      }
+    },
+    "detail": {
+      "type": "detail-strip",
+      "blocks": {
+        "d1": { "type": "item", "settings": { "text": "14 oz COTTON" } },
+        "d2": { "type": "item", "settings": { "text": "LIMITED RUN" } },
+        "d3": { "type": "item", "settings": { "text": "NUMBERED BY HAND" } },
+        "d4": { "type": "item", "settings": { "text": "SHIPS IN 48 HOURS" } },
+        "d5": { "type": "item", "settings": { "text": "FREE RETURNS" } }
+      },
+      "block_order": ["d1", "d2", "d3", "d4", "d5"]
+    },
+    "drop": {
+      "type": "drop-grid",
+      "settings": {
+        "label": "Now Airing · Drop 01",
+        "title_lead": "The Saturday",
+        "title_middle": "Morning",
+        "title_italic": "Drop.",
+        "run_per_piece": 250,
+        "meta_copy": "Six title cards for the ritual. Each piece is heavyweight 14 oz cotton, hand-numbered inside the hem tag, limited to 250. When they're gone, they don't come back."
+      }
+    },
+    "manifesto": {
+      "type": "manifesto",
+      "settings": {
+        "eyebrow": "Est. 2026"
+      }
+    },
+    "next": {
+      "type": "next-drop",
+      "settings": {
+        "kicker_lead": "Up Next"
+      }
+    }
+  },
+  "order": ["hero", "detail", "drop", "manifesto", "next"]
+}

@@ -1,0 +1,27 @@
+<nav class="main-nav" role="navigation" aria-label="Primary">
+  <div class="container nav-inner">
+    <a href="{{ routes.root_url }}" class="nav-logo" aria-label="{{ shop.name }} — home">
+      {% render 'logo-horizontal', width: 200 %}
+    </a>
+    <div class="nav-links">
+      <a href="{{ routes.root_url }}#drop">Shop</a>
+      <a href="/pages/about">About</a>
+      <a href="{{ routes.cart_url }}" class="bag" data-cart-toggle aria-label="Bag ({{ cart.item_count }} items)">
+        Bag
+        <span class="bag-count" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "header",
+  "class": "site-header",
+  "settings": [
+    { "type": "paragraph", "content": "Navigation is intentionally limited to Shop · About · Bag per brand rules. The nav is not customizable here — this protects the drop mechanic." }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

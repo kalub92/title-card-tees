@@ -1,0 +1,66 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<section class="customer-page">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:36px;flex-wrap:wrap;gap:20px;">
+      <h1 style="margin:0;">{{ 'customer.account.title' | t }}</h1>
+      <a href="{{ routes.account_logout_url }}" class="btn-outline">{{ 'customer.account.log_out' | t | upcase }}</a>
+    </div>
+
+    <h2>{{ 'customer.account.orders' | t }}</h2>
+    {%- paginate customer.orders by 20 -%}
+      {%- if customer.orders.size == 0 -%}
+        <p style="opacity:0.7;">{{ 'customer.account.no_orders' | t }}</p>
+      {%- else -%}
+        <table class="customer-table">
+          <thead>
+            <tr>
+              <th>{{ 'customer.account.order_number' | t }}</th>
+              <th>{{ 'customer.account.date' | t }}</th>
+              <th>{{ 'customer.account.payment_status' | t }}</th>
+              <th>{{ 'customer.account.fulfillment_status' | t }}</th>
+              <th style="text-align:right;">{{ 'customer.account.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for order in customer.orders -%}
+              <tr>
+                <td><a href="{{ order.customer_url }}" style="text-decoration:underline;">{{ order.name }}</a></td>
+                <td>{{ order.created_at | date: '%b %d, %Y' }}</td>
+                <td>{{ order.financial_status_label }}</td>
+                <td>{{ order.fulfillment_status_label }}</td>
+                <td style="text-align:right;font-family:'Archivo Black',sans-serif;">{{ order.total_price | money_without_trailing_zeros }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      {%- endif -%}
+      {{ paginate | default_pagination }}
+    {%- endpaginate -%}
+
+    <div class="customer-meta">
+      <div class="box">
+        <h3>{{ 'customer.account.details' | t | upcase }}</h3>
+        <div style="font-size:14px;line-height:1.7;">
+          <div>{{ customer.name | default: customer.email }}</div>
+          <div style="opacity:0.7;">{{ customer.email }}</div>
+        </div>
+      </div>
+      <div class="box">
+        <h3>{{ 'customer.account.view_addresses' | t | upcase }}</h3>
+        {%- if customer.default_address -%}
+          <div style="font-size:14px;line-height:1.6;">
+            {{ customer.default_address | format_address }}
+          </div>
+        {%- else -%}
+          <div style="font-size:14px;opacity:0.7;">No address on file.</div>
+        {%- endif -%}
+        <div style="margin-top:14px;"><a href="{{ routes.account_addresses_url }}" style="text-decoration:underline;font-size:13px;">Manage addresses</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Account", "settings": [] }
+{% endschema %}

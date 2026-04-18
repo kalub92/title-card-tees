@@ -1,0 +1,140 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Title Card Tees",
+    "theme_version": "1.0.0",
+    "theme_author": "Title Card Tees",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Use monogram mark (TCT). 32×32 or larger."
+      },
+      {
+        "type": "image_picker",
+        "id": "og_image",
+        "label": "Social share image",
+        "info": "1200×630. Hero card composition preferred."
+      }
+    ]
+  },
+  {
+    "name": "Drop mechanic",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Current drop"
+      },
+      {
+        "type": "collection",
+        "id": "current_drop",
+        "label": "Current drop collection",
+        "info": "Only this collection shows on the homepage and in shop routes."
+      },
+      {
+        "type": "text",
+        "id": "current_drop_number",
+        "label": "Drop number",
+        "default": "01"
+      },
+      {
+        "type": "text",
+        "id": "current_drop_name",
+        "label": "Drop name",
+        "default": "Saturday Morning"
+      },
+      {
+        "type": "text",
+        "id": "current_drop_tagline",
+        "label": "Drop tagline",
+        "default": "Saturday morning, properly dressed."
+      },
+      {
+        "type": "text",
+        "id": "current_drop_date_label",
+        "label": "Air date label",
+        "default": "NOW AIRING · UNTIL SOLD OUT"
+      },
+      {
+        "type": "header",
+        "content": "Next drop"
+      },
+      {
+        "type": "text",
+        "id": "next_drop_number",
+        "label": "Next drop number",
+        "default": "02"
+      },
+      {
+        "type": "text",
+        "id": "next_drop_name",
+        "label": "Next drop name",
+        "default": "After school."
+      },
+      {
+        "type": "text",
+        "id": "next_drop_tagline",
+        "label": "Next drop tagline",
+        "default": "3 PM energy. Juice boxes. Homework avoided."
+      },
+      {
+        "type": "text",
+        "id": "next_drop_datetime",
+        "label": "Next drop date/time (ISO 8601)",
+        "default": "2026-05-15T10:00:00-04:00",
+        "info": "Used by the countdown. Format: 2026-05-15T10:00:00-04:00"
+      },
+      {
+        "type": "text",
+        "id": "next_drop_date_display",
+        "label": "Next drop date display",
+        "default": "AIRS 05.15.2026 · 10:00 AM EDT"
+      }
+    ]
+  },
+  {
+    "name": "Voice presets",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Brand voice enforced. Avoid: throwback, vibes, IYKYK, emoji, retro, 90s kids."
+      },
+      {
+        "type": "text",
+        "id": "manifesto_headline_lead",
+        "label": "Manifesto headline lead",
+        "default": "Not a throwback."
+      },
+      {
+        "type": "text",
+        "id": "manifesto_headline_italic",
+        "label": "Manifesto headline italic",
+        "default": "A return."
+      },
+      {
+        "type": "textarea",
+        "id": "manifesto_body",
+        "label": "Manifesto body",
+        "default": "The 90s didn't need to explain itself. The title cards didn't shout. The shows started and you knew."
+      },
+      {
+        "type": "textarea",
+        "id": "manifesto_pullquote",
+        "label": "Manifesto pullquote",
+        "default": "We make shirts for the people who were there — and have since developed taste."
+      },
+      {
+        "type": "textarea",
+        "id": "manifesto_close",
+        "label": "Manifesto close",
+        "default": "One drop at a time. Numbered. Limited. When it's gone, it's gone. The archive is in your closet."
+      }
+    ]
+  }
+]

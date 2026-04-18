@@ -1,0 +1,9 @@
+{%- comment -%}
+  Six-wave squiggle signature. Tangerine by default.
+  Never use outside its defined roles (logo, divider, ticker).
+{%- endcomment -%}
+{%- assign sq_width = width | default: 120 -%}
+{%- assign sq_stroke = stroke | default: '#E8743C' -%}
+<svg class="squiggle" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg" style="width: {{ sq_width }}px;" aria-hidden="true">
+  <path d="M15 15 Q35 5, 55 15 T95 15 T135 15 T175 15 T190 15" stroke="{{ sq_stroke }}" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg>
