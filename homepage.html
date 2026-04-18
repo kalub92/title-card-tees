@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Title Card Tees — Saturday Morning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Archivo+Black&family=Fraunces:ital,opsz,wght@1,14,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F4EDE0;
+    --ink: #151419;
+    --tangerine: #E8743C;
+    --teal: #2F9A95;
+    --rose: #D9728B;
+    --mustard: #D9A334;
+    --cream-deep: #EBE2CF;
+    --paper: #EFE7D4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  .display { font-family: 'Unbounded', sans-serif; letter-spacing: -0.02em; }
+  .chunky { font-family: 'Archivo Black', sans-serif; letter-spacing: -0.005em; }
+  .editorial { font-family: 'Fraunces', serif; font-style: italic; }
+
+  .container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 44px;
+  }
+
+  /* ===== TICKER ===== */
+  .ticker {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    border-bottom: 2px solid var(--ink);
+  }
+  .ticker-track {
+    display: inline-block;
+    animation: scroll 42s linear infinite;
+    padding-left: 100%;
+  }
+  .ticker-item { margin-right: 50px; }
+  .ticker-dot { color: var(--tangerine); margin: 0 10px; }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* ===== NAV ===== */
+  nav.main-nav {
+    border-bottom: 2px solid var(--ink);
+    padding: 22px 0;
+    position: sticky;
+    top: 0;
+    background: var(--cream);
+    z-index: 50;
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-logo svg { display: block; }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .nav-links a { transition: opacity 0.2s; position: relative; }
+  .nav-links a:hover { opacity: 0.6; }
+  .bag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 2px solid var(--ink);
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .bag:hover { background: var(--ink); color: var(--cream); }
+  .bag-count {
+    background: var(--tangerine);
+    color: var(--cream);
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 72px 0 100px;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .hero-text .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 36px;
+    padding: 6px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+  }
+  .kicker .live-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--tangerine);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .hero-text h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(54px, 7.5vw, 104px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 36px;
+  }
+  .hero-text h1 .ital {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .hero-text .lead {
+    max-width: 440px;
+    font-size: 18px;
+    line-height: 1.55;
+    margin-bottom: 44px;
+  }
+  .cta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 32px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s;
+  }
+  .btn-primary:hover { background: var(--tangerine); transform: translateY(-2px); }
+  .btn-primary .arrow { transition: transform 0.25s; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+  .meta-text {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    opacity: 0.65;
+  }
+
+  .hero-card-wrap { position: relative; }
+  .hero-card {
+    background: var(--ink);
+    border-radius: 20px;
+    padding: 60px 50px;
+    aspect-ratio: 1 / 1.05;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(21, 20, 25, 0.18);
+  }
+  .hero-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .hero-card-top .ts {
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--tangerine);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+  }
+  .hero-card-top .airing {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--cream);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-card-top .airing::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--tangerine);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  .hero-card-center { text-align: center; }
+  .hero-card-center .label {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--cream);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    opacity: 0.6;
+    margin-bottom: 14px;
+  }
+  .hero-card-center h2 {
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--cream);
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .hero-card-center h2 .alt { color: var(--tangerine); }
+  .hero-card-center .squiggle-inline { margin: 18px auto 0; }
+  .hero-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .hero-card-bottom .side {
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--cream);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    opacity: 0.65;
+  }
+
+  .hero-shape { position: absolute; z-index: 5; }
+  .hero-shape.triangle {
+    top: -20px; left: -22px;
+    width: 0; height: 0;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-bottom: 38px solid var(--mustard);
+    transform: rotate(-15deg);
+  }
+  .hero-shape.arc {
+    bottom: -14px; right: -14px;
+    width: 70px; height: 70px;
+    border: 9px solid var(--teal);
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-radius: 50%;
+    transform: rotate(-30deg);
+  }
+  .hero-shape.dots {
+    top: 40%; right: -30px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .hero-shape.dots span {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--rose);
+  }
+
+  /* ===== DETAIL STRIP ===== */
+  .detail-strip {
+    background: var(--cream-deep);
+    border-bottom: 2px solid var(--ink);
+    padding: 18px 0;
+    overflow: hidden;
+  }
+  .detail-strip-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+  }
+  .detail-strip-inner > div { display: flex; align-items: center; gap: 12px; }
+  .detail-strip-inner .dot { color: var(--tangerine); }
+
+  /* ===== COLLECTION ===== */
+  .collection {
+    padding: 110px 0 120px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 80px;
+  }
+  .section-head .label {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-head .label::before {
+    content: "";
+    width: 10px; height: 10px;
+    background: var(--tangerine);
+    border-radius: 50%;
+  }
+  .section-head h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(48px, 6vw, 82px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+  .section-head h2 .ital {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .section-head .meta {
+    font-size: 17px;
+    line-height: 1.55;
+    padding-bottom: 16px;
+  }
+  .section-head .meta .counter {
+    display: inline-block;
+    padding: 5px 14px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .product {
+    border: 2px solid var(--ink);
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .product:hover { transform: translateY(-6px); }
+  .product-slot {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    padding: 12px 18px;
+    background: var(--cream-deep);
+    border-bottom: 1.5px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .product-slot .slot-time { color: var(--tangerine); }
+  .product-slot .run {
+    opacity: 0.55;
+    font-weight: 400;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  .product-card {
+    aspect-ratio: 4 / 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card.card-bowl { background: var(--mustard); }
+  .product-card.card-slime { background: var(--teal); }
+  .product-card.card-guide { background: var(--rose); }
+  .product-card.card-rewind { background: var(--ink); }
+  .product-card.card-marathon { background: var(--tangerine); }
+  .product-card.card-intro { background: var(--cream-deep); }
+  .product-info {
+    padding: 22px 22px 24px;
+    border-top: 1.5px solid var(--ink);
+    background: var(--cream);
+  }
+  .product-info .name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  .product-info .desc {
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0.75;
+    margin-bottom: 18px;
+  }
+  .product-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .price {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 20px;
+    letter-spacing: -0.005em;
+  }
+  .quick-shop {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    padding: 10px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .quick-shop:hover { background: var(--ink); color: var(--cream); }
+  .product.sold-out .product-card::after {
+    content: 'SOLD OUT';
+    position: absolute;
+    inset: 0;
+    background: rgba(21, 20, 25, 0.82);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.3em;
+  }
+  .product.sold-out .quick-shop { opacity: 0.4; pointer-events: none; }
+  .product.sold-out .quick-shop::before { content: 'NOTIFY '; }
+
+  /* ===== MANIFESTO ===== */
+  .manifesto {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 130px 0;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 100px;
+    align-items: start;
+    position: relative;
+    z-index: 2;
+  }
+  .manifesto .label {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0.7;
+    margin-bottom: 28px;
+  }
+  .manifesto h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(40px, 4.5vw, 58px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .manifesto h3 .ital {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--tangerine);
+  }
+  .manifesto-body p {
+    font-size: 19px;
+    line-height: 1.55;
+    margin-bottom: 26px;
+  }
+  .manifesto-body p:last-child { margin-bottom: 0; }
+  .manifesto-body .pullquote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.35;
+    padding: 28px 0;
+    border-top: 1px solid rgba(244, 237, 224, 0.2);
+    border-bottom: 1px solid rgba(244, 237, 224, 0.2);
+    margin: 40px 0;
+  }
+  .manifesto-shape {
+    position: absolute;
+    right: 5%;
+    bottom: -60px;
+    width: 180px;
+    opacity: 0.08;
+  }
+
+  /* ===== NEXT DROP ===== */
+  .next-drop {
+    padding: 140px 0 150px;
+    border-bottom: 2px solid var(--ink);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .nd-shape {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .nd-shape.circle-teal {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: var(--teal);
+    opacity: 0.3;
+    top: 80px; left: -60px;
+  }
+  .nd-shape.circle-mustard {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: var(--mustard);
+    opacity: 0.3;
+    bottom: 100px; right: -40px;
+  }
+  .nd-shape.triangle-rose {
+    width: 0; height: 0;
+    border-left: 24px solid transparent;
+    border-right: 24px solid transparent;
+    border-bottom: 42px solid var(--rose);
+    opacity: 0.5;
+    top: 130px; right: 8%;
+    transform: rotate(24deg);
+  }
+  .nd-shape.squiggle-small {
+    top: 240px;
+    left: 6%;
+    width: 90px;
+    opacity: 0.7;
+  }
+
+  .nd-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+  }
+  .nd-kicker::before, .nd-kicker::after {
+    content: "";
+    width: 48px;
+    height: 1px;
+    background: var(--ink);
+  }
+  .nd-kicker .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--tangerine);
+  }
+  .nd-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(56px, 9vw, 128px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+  }
+  .nd-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    margin-bottom: 60px;
+    opacity: 0.8;
+    position: relative;
+    z-index: 2;
+  }
+
+  .countdown {
+    display: inline-grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 14px;
+    margin-bottom: 44px;
+    position: relative;
+    z-index: 2;
+  }
+  .cd-unit {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 14px;
+    padding: 28px 36px 22px;
+    min-width: 130px;
+  }
+  .cd-unit .num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(48px, 6vw, 78px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    display: block;
+  }
+  .cd-unit .lbl {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    opacity: 0.65;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+  .cd-sep {
+    align-self: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 40px;
+    color: var(--tangerine);
+    padding: 0 2px;
+    margin-bottom: 10px;
+  }
+  .nd-date {
+    display: inline-block;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    padding: 10px 22px;
+    background: var(--cream-deep);
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+  }
+  .nd-date .dot { color: var(--tangerine); margin: 0 10px; }
+
+  .nd-form {
+    max-width: 540px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+  }
+  .nd-form input {
+    padding: 18px 26px;
+    border: 2px solid var(--ink);
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+  .nd-form input:focus { outline: none; background: var(--paper); }
+  .nd-form button {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 32px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    border-radius: 100px;
+    transition: background 0.2s;
+  }
+  .nd-form button:hover { background: var(--tangerine); }
+  .nd-fineprint {
+    margin-top: 16px;
+    font-size: 12px;
+    opacity: 0.6;
+    letter-spacing: 0.04em;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--cream-deep);
+    padding: 90px 0 30px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 70px;
+  }
+  .footer-brand .big-mono {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 72px;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+  .footer-brand p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.5;
+    max-width: 300px;
+  }
+  .footer-col h5 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    margin-bottom: 22px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { font-size: 14px; transition: opacity 0.2s; }
+  .footer-col a:hover { opacity: 0.6; }
+  .footer-bottom {
+    border-top: 1px solid rgba(21,20,25,0.2);
+    padding-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 900px) {
+    .container { padding: 0 24px; }
+    .nav-links { gap: 16px; font-size: 11px; }
+    .nav-links a:not(.bag) { display: none; }
+    .hero { padding: 50px 0 70px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+    .hero-card { padding: 40px 30px; }
+    .detail-strip-inner { flex-wrap: wrap; gap: 18px 30px; justify-content: flex-start; font-size: 10px; }
+    .collection { padding: 70px 0 80px; }
+    .section-head { grid-template-columns: 1fr; gap: 26px; margin-bottom: 50px; }
+    .product-grid { grid-template-columns: 1fr; gap: 20px; }
+    .manifesto { padding: 80px 0; }
+    .manifesto-grid { grid-template-columns: 1fr; gap: 40px; }
+    .next-drop { padding: 80px 0 90px; }
+    .countdown { grid-template-columns: repeat(4, 1fr); gap: 6px; width: 100%; }
+    .cd-unit { min-width: 0; padding: 18px 6px 14px; border-radius: 10px; }
+    .cd-sep { display: none; }
+    .cd-unit .lbl { font-size: 9px; letter-spacing: 0.15em; }
+    .nd-form { grid-template-columns: 1fr; }
+    .nd-shape { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand { grid-column: 1 / 3; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .hero-shape.dots { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">NOW AIRING <span class="ticker-dot">●</span> SATURDAY MORNING</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> ONE DROP AT A TIME · WHEN IT'S GONE, IT'S GONE</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> FREE SHIPPING OVER $125</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> NEXT DROP · 05.15</span>
+    <span class="ticker-item">NOW AIRING <span class="ticker-dot">●</span> SATURDAY MORNING</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 6 PIECES · 250 EACH · NUMBERED BY HAND</span>
+  </div>
+</div>
+
+<nav class="main-nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 280 54" xmlns="http://www.w3.org/2000/svg" style="width: 200px; height: auto;">
+        <text x="140" y="30" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="26" fill="#151419" letter-spacing="-0.5">TITLE CARD TEES</text>
+        <path d="M40 44 Q60 37, 80 44 T120 44 T160 44 T200 44 T240 44" stroke="#E8743C" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#">Shop</a>
+      <a href="#">About</a>
+      <a href="#" class="bag">Bag <span class="bag-count">2</span></a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="kicker"><span class="live-dot"></span> NOW AIRING · UNTIL SOLD OUT</div>
+        <h1>Saturday<br/>morning,<br/><span class="ital">properly</span><br/>dressed.</h1>
+        <p class="lead">Six pieces for the holy ritual. Heavyweight cotton, numbered runs of 250, inspired by the title cards that shaped an entire generation's Saturday.</p>
+        <div class="cta-row">
+          <a href="#" class="btn-primary">SHOP THE DROP <span class="arrow">→</span></a>
+          <span class="meta-text">One drop. When it's gone, it's gone.</span>
+        </div>
+      </div>
+      <div class="hero-card-wrap">
+        <div class="hero-shape triangle"></div>
+        <div class="hero-shape dots"><span></span><span></span><span></span></div>
+        <div class="hero-shape arc"></div>
+        <div class="hero-card">
+          <div class="hero-card-top">
+            <div class="ts">06:00 AM</div>
+            <div class="airing">NOW AIRING</div>
+          </div>
+          <div class="hero-card-center">
+            <div class="label">DROP NO. 01</div>
+            <h2>SATURDAY<br/><span class="alt">MORNING</span></h2>
+            <svg class="squiggle-inline" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg" style="width: 200px;">
+              <path d="M15 15 Q35 5, 55 15 T95 15 T135 15 T175 15 T190 15" stroke="#E8743C" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="hero-card-bottom">
+            <span class="side">VOL. 01</span>
+            <span class="side">EST. 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="detail-strip">
+  <div class="container detail-strip-inner">
+    <div>14 oz COTTON <span class="dot">●</span></div>
+    <div>LIMITED RUN <span class="dot">●</span></div>
+    <div>NUMBERED BY HAND <span class="dot">●</span></div>
+    <div>SHIPS IN 48 HOURS <span class="dot">●</span></div>
+    <div>FREE RETURNS</div>
+  </div>
+</div>
+
+<section class="collection">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="label">Now Airing · Drop 01</div>
+        <h2>The Saturday<br/>Morning <span class="ital">Drop.</span></h2>
+      </div>
+      <div class="meta">
+        <div class="counter">6 PIECES · 250 EACH</div>
+        <p>Six title cards for the ritual. Each piece is heavyweight 14 oz cotton, hand-numbered inside the hem tag, limited to 250. When they're gone, they don't come back.</p>
+      </div>
+    </div>
+
+    <div class="product-grid">
+
+      <article class="product">
+        <div class="product-slot">
+          <span class="slot-time">8:00 AM</span>
+          <span class="run">01 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card card-bowl">
+          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+            <rect x="40" y="80" width="200" height="130" rx="12" fill="#151419"/>
+            <text x="140" y="130" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="26" fill="#F4EDE0">THE</text>
+            <text x="140" y="170" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="32" fill="#E8743C">BOWL</text>
+            <circle cx="70" cy="235" r="6" fill="#151419"/>
+            <circle cx="88" cy="235" r="6" fill="#151419"/>
+            <circle cx="106" cy="235" r="6" fill="#151419"/>
+            <path d="M195 235 Q208 227, 221 235 T247 235" stroke="#151419" stroke-width="4" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">The Bowl</div>
+          <div class="desc">Mustard heavyweight tee. Cereal-box title card on the front.</div>
+          <div class="product-row">
+            <span class="price">$48</span>
+            <button class="quick-shop">ADD TO BAG</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product sold-out">
+        <div class="product-slot">
+          <span class="slot-time">9:00 AM</span>
+          <span class="run">02 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card card-slime">
+          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+            <rect x="40" y="80" width="200" height="120" rx="12" fill="#151419"/>
+            <text x="140" y="128" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="28" fill="#F4EDE0">THE</text>
+            <text x="140" y="168" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="32" fill="#D9A334">SLIME</text>
+            <path d="M78 200 Q78 222, 72 240 Q72 248, 78 248 Q84 248, 84 240 Q78 222, 78 200" fill="#151419"/>
+            <path d="M140 200 Q140 228, 134 252 Q134 262, 140 262 Q146 262, 146 252 Q140 228, 140 200" fill="#151419"/>
+            <path d="M202 200 Q202 218, 196 234 Q196 240, 202 240 Q208 240, 208 234 Q202 218, 202 200" fill="#151419"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">The Slime</div>
+          <div class="desc">Teal crop-fit with discharge-print drip from the title card.</div>
+          <div class="product-row">
+            <span class="price">$48</span>
+            <button class="quick-shop">WHEN BACK</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-slot">
+          <span class="slot-time">10:00 AM</span>
+          <span class="run">03 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card card-guide">
+          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+            <rect x="50" y="60" width="180" height="170" fill="#F4EDE0" stroke="#151419" stroke-width="2"/>
+            <text x="140" y="90" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="12" fill="#151419" letter-spacing="1">SAT · 8AM</text>
+            <line x1="70" y1="100" x2="210" y2="100" stroke="#151419" stroke-width="1"/>
+            <text x="140" y="124" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="18" fill="#E8743C">THE GUIDE</text>
+            <line x1="70" y1="138" x2="210" y2="138" stroke="#151419" stroke-width="1" opacity="0.3"/>
+            <text x="140" y="160" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#151419">CH 04 · Cartoons</text>
+            <text x="140" y="180" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#151419">CH 07 · Toons</text>
+            <text x="140" y="200" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#151419">CH 11 · Animated</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">The Guide</div>
+          <div class="desc">Dusty-rose long sleeve. Back print reads like a TV listing.</div>
+          <div class="product-row">
+            <span class="price">$68</span>
+            <button class="quick-shop">ADD TO BAG</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-slot">
+          <span class="slot-time">11:00 AM</span>
+          <span class="run">04 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card card-rewind">
+          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+            <rect x="40" y="80" width="200" height="110" rx="10" fill="#F4EDE0"/>
+            <text x="140" y="130" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="22" fill="#151419">BE KIND</text>
+            <text x="140" y="165" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="24" fill="#E8743C">REWIND</text>
+            <path d="M90 220 L115 234 L90 248 Z" fill="#F4EDE0"/>
+            <rect x="122" y="220" width="7" height="28" fill="#F4EDE0"/>
+            <rect x="132" y="220" width="7" height="28" fill="#F4EDE0"/>
+            <path d="M180 220 L160 234 L180 248 Z" fill="#F4EDE0"/>
+            <path d="M200 220 L180 234 L200 248 Z" fill="#F4EDE0"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">The Rewind</div>
+          <div class="desc">Ink heavyweight crewneck. Chest title card, Tangerine back print.</div>
+          <div class="product-row">
+            <span class="price">$88</span>
+            <button class="quick-shop">ADD TO BAG</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-slot">
+          <span class="slot-time">12:00 PM</span>
+          <span class="run">05 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card card-marathon">
+          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+            <rect x="35" y="95" width="210" height="85" rx="10" fill="#151419"/>
+            <text x="140" y="148" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="30" fill="#F4EDE0">MARATHON</text>
+            <circle cx="68" cy="215" r="8" fill="#151419"/>
+            <text x="68" y="245" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="11" fill="#151419">8AM</text>
+            <circle cx="118" cy="215" r="8" fill="#151419"/>
+            <text x="118" y="245" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="11" fill="#151419">9AM</text>
+            <circle cx="168" cy="215" r="8" fill="#151419"/>
+            <text x="168" y="245" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="11" fill="#151419">10AM</text>
+            <circle cx="218" cy="215" r="8" fill="#151419"/>
+            <text x="218" y="245" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="11" fill="#151419">11AM</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">The Marathon</div>
+          <div class="desc">Tangerine long sleeve. Programming block printed cuff to cuff.</div>
+          <div class="product-row">
+            <span class="price">$68</span>
+            <button class="quick-shop">ADD TO BAG</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-slot">
+          <span class="slot-time">1:00 PM</span>
+          <span class="run">06 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card card-intro">
+          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+            <rect x="40" y="95" width="200" height="85" rx="10" fill="#151419"/>
+            <text x="140" y="148" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="28" fill="#E8743C">THE INTRO</text>
+            <path d="M55 215 Q75 202, 95 215" stroke="#2F9A95" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M128 210 L145 190 L162 210 Z" fill="#D9A334"/>
+            <circle cx="193" cy="212" r="5" fill="#D9728B"/>
+            <circle cx="208" cy="212" r="5" fill="#D9728B"/>
+            <circle cx="223" cy="212" r="5" fill="#D9728B"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="name">The Intro</div>
+          <div class="desc">Cream heavyweight. The hero piece — full-chest title card.</div>
+          <div class="product-row">
+            <span class="price">$52</span>
+            <button class="quick-shop">ADD TO BAG</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-grid">
+      <div>
+        <div class="label">Est. 2026</div>
+        <h3>Not a throwback. <span class="ital">A return.</span></h3>
+      </div>
+      <div class="manifesto-body">
+        <p>The 90s didn't need to explain itself. The title cards didn't shout. The shows started and you knew.</p>
+        <div class="pullquote">We make shirts for the people who were there — and have since developed taste.</div>
+        <p>One drop at a time. Numbered. Limited. When it's gone, it's gone. The archive is in your closet.</p>
+      </div>
+    </div>
+    <svg class="manifesto-shape" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 15 Q35 2, 60 15 T110 15 T160 15 T190 15" stroke="#F4EDE0" stroke-width="8" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+</section>
+
+<section class="next-drop">
+  <div class="nd-shape circle-teal"></div>
+  <div class="nd-shape circle-mustard"></div>
+  <div class="nd-shape triangle-rose"></div>
+  <svg class="nd-shape squiggle-small" viewBox="0 0 90 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 12 Q18 3, 30 12 T54 12 T78 12 T86 12" stroke="#E8743C" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <div class="container">
+    <div class="nd-kicker">
+      <span>Up Next</span><span class="dot"></span><span>Drop 02</span>
+    </div>
+
+    <h2 class="nd-name">After<br/><span style="font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;">school.</span></h2>
+    <p class="nd-tagline">3 PM energy. Juice boxes. Homework avoided.</p>
+
+    <div class="countdown">
+      <div class="cd-unit">
+        <span class="num" id="cd-days">27</span>
+        <span class="lbl">Days</span>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <span class="num" id="cd-hours">14</span>
+        <span class="lbl">Hours</span>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <span class="num" id="cd-mins">52</span>
+        <span class="lbl">Minutes</span>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <span class="num" id="cd-secs">18</span>
+        <span class="lbl">Seconds</span>
+      </div>
+    </div>
+
+    <div class="nd-date">
+      AIRS 05.15.2026 <span class="dot">●</span> 10:00 AM EDT
+    </div>
+
+    <form class="nd-form" onsubmit="event.preventDefault(); this.querySelector('input').value = &quot;You're on the list.&quot;; this.querySelector('input').setAttribute('readonly', true);">
+      <input type="email" placeholder="your@email.com — one email when it drops" required />
+      <button type="submit">SET REMINDER</button>
+    </form>
+    <div class="nd-fineprint">One email. Drop day only. No filler.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="big-mono">TCT.</div>
+        <p>Shirts for the ritual. Title Card Tees, est. 2026.</p>
+      </div>
+      <div class="footer-col">
+        <h5>SHOP</h5>
+        <ul>
+          <li><a href="#">The current drop</a></li>
+          <li><a href="#">Next drop</a></li>
+          <li><a href="#">Sizing</a></li>
+          <li><a href="#">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>ABOUT</h5>
+        <ul>
+          <li><a href="#">Our story</a></li>
+          <li><a href="#">The fabric</a></li>
+          <li><a href="#">How we drop</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>FOLLOW</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Email list</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Title Card Tees. All rights reserved.</div>
+      <div>Privacy · Terms · Accessibility</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const target = new Date('2026-05-15T10:00:00-04:00').getTime();
+  const dEl = document.getElementById('cd-days');
+  const hEl = document.getElementById('cd-hours');
+  const mEl = document.getElementById('cd-mins');
+  const sEl = document.getElementById('cd-secs');
+  function tick() {
+    const now = Date.now();
+    const diff = target - now;
+    if (diff <= 0) {
+      dEl.textContent = hEl.textContent = mEl.textContent = sEl.textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    dEl.textContent = String(d).padStart(2, '0');
+    hEl.textContent = String(h).padStart(2, '0');
+    mEl.textContent = String(m).padStart(2, '0');
+    sEl.textContent = String(s).padStart(2, '0');
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
