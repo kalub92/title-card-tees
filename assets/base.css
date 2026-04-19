@@ -7,6 +7,13 @@
   --mustard: #D9A334;
   --cream-deep: #EBE2CF;
   --paper: #EFE7D4;
+
+  /* Drop 01 — Park Day. Accent palette nods to the blue heeler show's
+     visual language: warm peach card, deep navy ink. Swap with each drop. */
+  --drop-bg: #F4DEB3;
+  --drop-ink: #1E3A6F;
+  --drop-shadow: rgba(30, 58, 111, 0.22);
+  --drop-grain: rgba(30, 58, 111, 0.04);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -242,9 +249,9 @@ nav.main-nav {
 
 /* ===== DETAIL STRIP ===== */
 .detail-strip {
-  background: var(--cream-deep);
-  border-bottom: 2px solid var(--ink);
-  padding: 18px 0;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 22px 0;
   overflow: hidden;
 }
 .detail-strip-inner {
@@ -252,10 +259,10 @@ nav.main-nav {
   justify-content: space-between;
   align-items: center;
   font-family: 'Archivo Black', sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.12em;
+  font-size: 12px;
+  letter-spacing: 0.18em;
 }
-.detail-strip-inner > div { display: flex; align-items: center; gap: 12px; }
+.detail-strip-inner > div { display: flex; align-items: center; gap: 14px; }
 .detail-strip-inner .dot { color: var(--tangerine); }
 
 /* ===== FORM ELEMENTS ===== */

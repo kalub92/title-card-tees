@@ -2,19 +2,19 @@
   "current": {
     "sections": {},
     "current_drop_number": "01",
-    "current_drop_name": "Saturday Morning",
-    "current_drop_tagline": "Saturday morning, properly dressed.",
-    "current_drop_date_label": "NOW AIRING · UNTIL SOLD OUT",
+    "current_drop_name": "Park Day",
+    "current_drop_tagline": "Best episode of the year.",
+    "current_drop_date_label": "NOW AIRING · DROP 01",
     "next_drop_number": "02",
-    "next_drop_name": "After school.",
-    "next_drop_tagline": "3 PM energy. Juice boxes. Homework avoided.",
-    "next_drop_datetime": "2026-05-15T10:00:00-04:00",
-    "next_drop_date_display": "AIRS 05.15.2026 · 10:00 AM EDT",
-    "manifesto_headline_lead": "Not a throwback.",
-    "manifesto_headline_italic": "A return.",
-    "manifesto_body": "The 90s didn't need to explain itself. The title cards didn't shout. The shows started and you knew.",
-    "manifesto_pullquote": "We make shirts for the people who were there — and have since developed taste.",
-    "manifesto_close": "One drop at a time. Numbered. Limited. When it's gone, it's gone. The archive is in your closet."
+    "next_drop_name": "Still casting.",
+    "next_drop_tagline": "A different show. A different world. Same six pieces, numbered by hand.",
+    "next_drop_datetime": "2026-06-15T10:00:00-04:00",
+    "next_drop_date_display": "AIRS 06.15.2026 · 10:00 AM EDT",
+    "manifesto_headline_lead": "Not reference.",
+    "manifesto_headline_italic": "Reverence.",
+    "manifesto_body": "The best shows don't announce themselves. The title card comes up, and you already know.",
+    "manifesto_pullquote": "Shirts for the people who know the title card by heart.",
+    "manifesto_close": "Every drop pairs a show we love with a world we come back to. One drop at a time. Numbered. Limited. When it's gone, it's gone. The archive is in your closet."
   },
   "presets": {
     "Default": {}
