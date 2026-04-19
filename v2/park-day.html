@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Title Card Tees — Park Day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Archivo+Black&family=Fraunces:ital,opsz,wght@1,14,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F4EDE0;
+    --ink: #151419;
+    --tangerine: #E8743C;
+    --teal: #2F9A95;
+    --rose: #D9728B;
+    --mustard: #D9A334;
+    --cream-deep: #EBE2CF;
+    --paper: #EFE7D4;
+
+    /* Drop 01 accent palette — adopts the show's visual language.
+       This palette will swap with each drop. */
+    --drop-bg: #F4DEB3;      /* warm peachy cream, Bluey-ish */
+    --drop-ink: #1E3A6F;     /* deep navy for titles */
+    --drop-shadow: rgba(30, 58, 111, 0.22);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  img { max-width: 100%; display: block; }
+
+  .display { font-family: 'Unbounded', sans-serif; letter-spacing: -0.02em; }
+  .chunky { font-family: 'Archivo Black', sans-serif; letter-spacing: -0.005em; }
+  .editorial { font-family: 'Fraunces', serif; font-style: italic; }
+
+  .container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 44px;
+  }
+
+  /* ===== TICKER ===== */
+  .ticker {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    border-bottom: 2px solid var(--ink);
+  }
+  .ticker-track {
+    display: inline-block;
+    animation: scroll 42s linear infinite;
+    padding-left: 100%;
+  }
+  .ticker-item { margin-right: 50px; }
+  .ticker-dot { color: var(--tangerine); margin: 0 10px; }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* ===== NAV ===== */
+  nav.main-nav {
+    border-bottom: 2px solid var(--ink);
+    padding: 22px 0;
+    position: sticky;
+    top: 0;
+    background: var(--cream);
+    z-index: 50;
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-logo svg { display: block; }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .nav-links a { transition: opacity 0.2s; position: relative; }
+  .nav-links a:hover { opacity: 0.6; }
+  .bag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 2px solid var(--ink);
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .bag:hover { background: var(--ink); color: var(--cream); }
+  .bag-count {
+    background: var(--tangerine);
+    color: var(--cream);
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 72px 0 100px;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .hero-text .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 36px;
+    padding: 6px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+  }
+  .kicker .live-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--tangerine);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .hero-text h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(54px, 7.5vw, 104px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 36px;
+  }
+  .hero-text h1 .ital {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .hero-text .lead {
+    max-width: 460px;
+    font-size: 18px;
+    line-height: 1.55;
+    margin-bottom: 44px;
+  }
+  .cta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 32px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s;
+  }
+  .btn-primary:hover { background: var(--tangerine); transform: translateY(-2px); }
+  .btn-primary .arrow { transition: transform 0.25s; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+  .meta-text {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    opacity: 0.65;
+  }
+
+  /* ===== HERO CARD (Bluey-styled for Drop 01) ===== */
+  .hero-card-wrap { position: relative; }
+  .hero-shape {
+    position: absolute;
+    z-index: 0;
+    opacity: 0.9;
+  }
+  .hero-shape.triangle {
+    width: 0; height: 0;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-bottom: 38px solid var(--rose);
+    top: -18px; left: -28px;
+    transform: rotate(-18deg);
+  }
+  .hero-shape.dots {
+    top: 50%; right: -40px;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .hero-shape.dots span {
+    width: 14px; height: 14px;
+    background: var(--teal);
+    border-radius: 50%;
+  }
+  .hero-shape.arc {
+    bottom: -30px; left: -50px;
+    width: 100px; height: 50px;
+    border: 10px solid var(--mustard);
+    border-bottom: none;
+    border-radius: 100px 100px 0 0;
+    transform: rotate(12deg);
+  }
+
+  .hero-card {
+    background: var(--drop-bg);
+    border-radius: 24px;
+    padding: 38px 42px 34px;
+    aspect-ratio: 1 / 1.08;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 60px var(--drop-shadow);
+    z-index: 1;
+  }
+  /* subtle paper grain on the card */
+  .hero-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(30,58,111,0.04) 1px, transparent 1.5px),
+      radial-gradient(circle at 70% 60%, rgba(30,58,111,0.03) 1px, transparent 1.5px),
+      radial-gradient(circle at 40% 85%, rgba(30,58,111,0.04) 1px, transparent 1.5px);
+    background-size: 60px 60px, 80px 80px, 50px 50px;
+    pointer-events: none;
+  }
+  .hero-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-card-top .ts {
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--drop-ink);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+  }
+  .hero-card-top .airing {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--drop-ink);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-card-top .airing::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--tangerine);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  .hero-card-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  .hero-card-art {
+    width: 78%;
+    max-width: 340px;
+    margin: 0 auto;
+    filter: drop-shadow(0 8px 18px rgba(30,58,111,0.15));
+  }
+  .hero-card h2 {
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--drop-ink);
+    font-size: clamp(44px, 5.4vw, 64px);
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    margin-top: 14px;
+  }
+  .hero-card h2 .sub {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.38em;
+    letter-spacing: 0.02em;
+    margin-top: 10px;
+    opacity: 0.7;
+    text-transform: none;
+  }
+  .hero-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--drop-ink);
+    opacity: 0.6;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== DETAIL STRIP ===== */
+  .detail-strip {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 22px 0;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+  }
+  .detail-strip-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .detail-strip .dot { color: var(--tangerine); margin-left: 18px; }
+
+  /* ===== COLLECTION ===== */
+  .collection { padding: 110px 0 120px; }
+  .section-head {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 72px;
+  }
+  .section-head .label {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--tangerine);
+    margin-bottom: 20px;
+  }
+  .section-head h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(44px, 6.2vw, 88px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+  }
+  .section-head h2 .ital {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .section-head .meta .counter {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    padding: 8px 16px;
+    display: inline-block;
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .section-head .meta p {
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 420px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .product {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--ink);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--cream);
+    transition: transform 0.3s;
+  }
+  .product:hover { transform: translateY(-4px); }
+  .product.sold-out { opacity: 0.92; }
+  .product-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 22px;
+    background: var(--cream-deep);
+    border-bottom: 2px solid var(--ink);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+  .product-slot .slot-time { color: var(--tangerine); }
+  .product-slot .run { opacity: 0.6; }
+
+  .product-card {
+    background: var(--drop-bg);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--ink);
+  }
+  .product-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(30,58,111,0.04) 1px, transparent 1.5px),
+      radial-gradient(circle at 75% 75%, rgba(30,58,111,0.03) 1px, transparent 1.5px);
+    background-size: 40px 40px, 55px 55px;
+    pointer-events: none;
+  }
+  .product-art {
+    width: 78%;
+    max-width: 240px;
+    filter: drop-shadow(0 6px 14px rgba(30,58,111,0.12));
+    z-index: 1;
+  }
+  .product-title {
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--drop-ink);
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    margin-top: 6px;
+    z-index: 1;
+  }
+  .sold-out-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(30, 58, 111, 0.78);
+    color: var(--drop-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.12em;
+    z-index: 2;
+    transform: rotate(-4deg);
+  }
+
+  .product-info {
+    padding: 22px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .product-info .name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .product-info .desc {
+    font-size: 14px;
+    line-height: 1.55;
+    opacity: 0.75;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .product-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(21,20,25,0.18);
+  }
+  .product-row .price {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18px;
+    color: var(--tangerine);
+    letter-spacing: 0.02em;
+  }
+  .quick-shop {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 10px 18px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .quick-shop:hover { background: var(--tangerine); transform: translateY(-1px); }
+  .quick-shop.notify { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .quick-shop.notify:hover { background: var(--ink); color: var(--cream); }
+
+  /* ===== MANIFESTO ===== */
+  .manifesto {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .manifesto-label {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    color: var(--tangerine);
+    margin-bottom: 28px;
+  }
+  .manifesto-grid h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .manifesto-grid h3 .ital {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .manifesto-body { font-size: 18px; line-height: 1.65; }
+  .manifesto-body p { margin-bottom: 24px; opacity: 0.88; }
+  .pullquote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.35;
+    padding: 28px 0;
+    border-top: 1px solid rgba(244,237,224,0.22);
+    border-bottom: 1px solid rgba(244,237,224,0.22);
+    margin: 28px 0;
+  }
+  .manifesto-shape {
+    position: absolute;
+    bottom: 50px;
+    right: 44px;
+    width: 180px;
+    opacity: 0.55;
+  }
+
+  /* ===== NEXT DROP ===== */
+  .next-drop {
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .nd-shape { position: absolute; pointer-events: none; z-index: 0; }
+  .nd-shape.circle-teal {
+    width: 140px; height: 140px; border-radius: 50%;
+    background: var(--teal); top: 80px; left: 6%;
+    opacity: 0.18;
+  }
+  .nd-shape.circle-mustard {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: var(--mustard); bottom: 140px; right: 9%;
+    opacity: 0.3;
+  }
+  .nd-shape.triangle-rose {
+    width: 0; height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 52px solid var(--rose);
+    top: 40%; right: 14%;
+    transform: rotate(22deg);
+    opacity: 0.65;
+  }
+  .nd-shape.squiggle-small {
+    width: 110px; height: 30px;
+    bottom: 100px; left: 18%;
+    opacity: 0.7;
+  }
+  .next-drop .container { position: relative; z-index: 1; text-align: center; }
+  .nd-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    padding: 8px 20px;
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+    margin-bottom: 38px;
+  }
+  .nd-kicker .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--ink);
+    display: inline-block;
+  }
+  .nd-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(68px, 10vw, 140px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin-bottom: 22px;
+  }
+  .nd-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    margin-bottom: 54px;
+    opacity: 0.72;
+  }
+  .countdown {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+  .cd-unit {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 22px 28px 18px;
+    border-radius: 14px;
+    min-width: 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cd-unit .num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .cd-unit .lbl {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-top: 8px;
+  }
+  .cd-sep {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 32px;
+    color: var(--tangerine);
+    line-height: 1;
+  }
+  .nd-date {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    margin-bottom: 46px;
+  }
+  .nd-date .dot { color: var(--tangerine); margin: 0 8px; }
+  .nd-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0;
+    max-width: 520px;
+    margin: 0 auto;
+    border: 2px solid var(--ink);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .nd-form input {
+    border: none;
+    padding: 18px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    background: transparent;
+    color: var(--ink);
+    outline: none;
+  }
+  .nd-form input::placeholder { opacity: 0.5; }
+  .nd-form button {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0 32px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    transition: background 0.2s;
+  }
+  .nd-form button:hover { background: var(--tangerine); }
+  .nd-fineprint {
+    font-size: 12px;
+    opacity: 0.55;
+    margin-top: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 90px 0 34px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 70px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(244,237,224,0.18);
+  }
+  .footer-brand .big-mono {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
+  }
+  .footer-brand p {
+    font-size: 15px;
+    opacity: 0.7;
+    max-width: 280px;
+  }
+  .footer-col h5 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--tangerine);
+    margin-bottom: 22px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 12px; font-size: 15px; }
+  .footer-col a { opacity: 0.8; transition: opacity 0.2s; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    opacity: 0.5;
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 980px) {
+    .container { padding: 0 22px; }
+    .hero { padding: 50px 0 70px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 60px; }
+    .hero-text h1 { font-size: clamp(46px, 12vw, 70px); }
+    .hero-text .lead { font-size: 16px; }
+    .detail-strip-inner { justify-content: flex-start; font-size: 10.5px; gap: 10px; }
+    .detail-strip .dot { margin-left: 10px; }
+    .collection { padding: 70px 0 80px; }
+    .section-head { grid-template-columns: 1fr; gap: 26px; margin-bottom: 50px; }
+    .product-grid { grid-template-columns: 1fr; gap: 20px; }
+    .manifesto { padding: 80px 0; }
+    .manifesto-grid { grid-template-columns: 1fr; gap: 40px; }
+    .manifesto-shape { display: none; }
+    .next-drop { padding: 80px 0 90px; }
+    .countdown { grid-template-columns: repeat(4, 1fr); gap: 6px; width: 100%; }
+    .cd-unit { min-width: 0; padding: 18px 6px 14px; border-radius: 10px; }
+    .cd-unit .num { font-size: 30px; }
+    .cd-sep { display: none; }
+    .cd-unit .lbl { font-size: 9px; letter-spacing: 0.15em; }
+    .nd-form { grid-template-columns: 1fr; border-radius: 22px; }
+    .nd-form button { padding: 16px; }
+    .nd-shape { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand { grid-column: 1 / 3; }
+    .footer-brand .big-mono { font-size: 54px; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .hero-shape.dots { display: none; }
+    .hero-shape.arc { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">NOW AIRING <span class="ticker-dot">●</span> PARK DAY</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> DROP 01 · PARK ICONS, IN BLUEY'S STYLE</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> 6 PIECES · 250 EACH · NUMBERED BY HAND</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> FREE SHIPPING OVER $125</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span> ONE DROP AT A TIME · WHEN IT'S GONE, IT'S GONE</span>
+    <span class="ticker-item">NOW AIRING <span class="ticker-dot">●</span> PARK DAY</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="main-nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 280 54" xmlns="http://www.w3.org/2000/svg" style="width: 200px; height: auto;">
+        <text x="140" y="30" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="26" fill="#151419" letter-spacing="-0.5">TITLE CARD TEES</text>
+        <path d="M40 44 Q60 37, 80 44 T120 44 T160 44 T200 44 T240 44" stroke="#E8743C" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#">Shop</a>
+      <a href="#">About</a>
+      <a href="#" class="bag">Bag <span class="bag-count">2</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="kicker"><span class="live-dot"></span> NOW AIRING · DROP 01</div>
+        <h1>Park day.<br/>Best <span class="ital">episode</span><br/>of the year.</h1>
+        <p class="lead">Title cards from the shows we love, applied to the icons we know by heart. Drop 01 pairs the park's greatest hits with the style of Bluey. Six pieces. Heavyweight cotton. Numbered runs of 250.</p>
+        <div class="cta-row">
+          <a href="#shop" class="btn-primary">SHOP THE DROP <span class="arrow">→</span></a>
+          <span class="meta-text">One drop. When it's gone, it's gone.</span>
+        </div>
+      </div>
+
+      <div class="hero-card-wrap">
+        <div class="hero-shape triangle"></div>
+        <div class="hero-shape dots"><span></span><span></span><span></span></div>
+        <div class="hero-shape arc"></div>
+
+        <div class="hero-card">
+          <div class="hero-card-top">
+            <div class="ts">DROP 01</div>
+            <div class="airing">NOW AIRING</div>
+          </div>
+          <div class="hero-card-center">
+            <img src="theme_park.jpg" alt="Castle illustration" class="hero-card-art" />
+            <h2>PARK DAY<span class="sub">a title card tees original</span></h2>
+          </div>
+          <div class="hero-card-bottom">
+            <span>VOL. 01</span>
+            <span>EST. 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL STRIP -->
+<div class="detail-strip">
+  <div class="container detail-strip-inner">
+    <div>14 oz COTTON <span class="dot">●</span></div>
+    <div>LIMITED RUN <span class="dot">●</span></div>
+    <div>NUMBERED BY HAND <span class="dot">●</span></div>
+    <div>SHIPS IN 48 HOURS <span class="dot">●</span></div>
+    <div>FREE RETURNS</div>
+  </div>
+</div>
+
+<!-- COLLECTION -->
+<section class="collection" id="shop">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="label">Now Airing · Drop 01</div>
+        <h2>Park<br/><span class="ital">Day.</span></h2>
+      </div>
+      <div class="meta">
+        <div class="counter">6 PIECES · 250 EACH</div>
+        <p>Six title cards for the icons you know by heart — the hat, the birds, the leg, the flag, the swirl, the castle — drawn in the style of Bluey. Heavyweight 14 oz cotton. Hand-numbered on the interior hem tag.</p>
+      </div>
+    </div>
+
+    <div class="product-grid">
+
+      <!-- 01 THE HAT -->
+      <article class="product">
+        <div class="product-slot">
+          <span class="slot-time">OPENING</span>
+          <span class="run">01 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card">
+          <img src="magic_hat.jpg" alt="Wizard hat illustration" class="product-art" />
+        </div>
+        <div class="product-info">
+          <div class="name">The Hat</div>
+          <div class="desc">The wizard hat. You know the one. Stars, crescent, enough.</div>
+          <div class="product-row">
+            <span class="price">$48</span>
+            <button class="quick-shop">ADD TO BAG</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 THE PERCH -->
+      <article class="product">
+        <div class="product-slot">
+          <span class="slot-time">MIDMORNING</span>
+          <span class="run">02 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card">
+          <img src="bird_hut.jpg" alt="Four parrots on a branch" class="product-art" />
+        </div>
+        <div class="product-info">
+          <div class="name">The Perch</div>
+          <div class="desc">Four parrots. One branch. That one song you can't unhear.</div>
+          <div class="product-row">
+            <span class="price">$48</span>
+            <button class="quick-shop">ADD TO BAG</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 THE LEG — SOLD OUT -->
+      <article class="product sold-out">
+        <div class="product-slot">
+          <span class="slot-time">LUNCH</span>
+          <span class="run">03 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card">
+          <img src="meat_stick.jpg" alt="Turkey leg illustration" class="product-art" />
+          <div class="sold-out-overlay">SOLD OUT</div>
+        </div>
+        <div class="product-info">
+          <div class="name">The Leg</div>
+          <div class="desc">Smoked. Held like a trophy. Gone in a single afternoon.</div>
+          <div class="product-row">
+            <span class="price">$48</span>
+            <button class="quick-shop notify">NOTIFY · DROP 02</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 THE FLAG -->
+      <article class="product">
+        <div class="product-slot">
+          <span class="slot-time">AFTERNOON</span>
+          <span class="run">04 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card">
+          <img src="pirate_boat.jpg" alt="Pirate banner with crossed swords" class="product-art" />
+        </div>
+        <div class="product-info">
+          <div class="name">The Flag</div>
+          <div class="desc">Red drop. Crossed blades. The ride that gave us the song.</div>
+          <div class="product-row">
+            <span class="price">$48</span>
+            <button class="quick-shop">ADD TO BAG</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 05 THE WHIP -->
+      <article class="product">
+        <div class="product-slot">
+          <span class="slot-time">DUSK</span>
+          <span class="run">05 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card">
+          <img src="pineapple_swirl.jpg" alt="Pineapple soft-serve swirl" class="product-art" />
+        </div>
+        <div class="product-info">
+          <div class="name">The Whip</div>
+          <div class="desc">Pineapple. Swirl. Cup. No notes.</div>
+          <div class="product-row">
+            <span class="price">$48</span>
+            <button class="quick-shop">ADD TO BAG</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 06 THE CASTLE -->
+      <article class="product">
+        <div class="product-slot">
+          <span class="slot-time">FIREWORKS</span>
+          <span class="run">06 / 06 · 250 MADE</span>
+        </div>
+        <div class="product-card">
+          <img src="theme_park.jpg" alt="Castle illustration" class="product-art" />
+        </div>
+        <div class="product-info">
+          <div class="name">The Castle</div>
+          <div class="desc">Turrets you'd recognize at a quarter mile. The silhouette.</div>
+          <div class="product-row">
+            <span class="price">$48</span>
+            <button class="quick-shop">ADD TO BAG</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-grid">
+      <div>
+        <div class="manifesto-label">2026</div>
+        <h3>Not reference.<br/><span class="ital">Reverence.</span></h3>
+      </div>
+      <div class="manifesto-body">
+        <p>The best shows don't announce themselves. The title card comes up, and you already know.</p>
+        <div class="pullquote">Shirts for the people who know the title card by heart.</div>
+        <p>Every drop pairs a show we love with a world we come back to. One drop at a time. Numbered. Limited. When it's gone, it's gone. The archive is in your closet.</p>
+      </div>
+    </div>
+    <svg class="manifesto-shape" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 15 Q35 2, 60 15 T110 15 T160 15 T190 15" stroke="#F4EDE0" stroke-width="8" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- NEXT DROP -->
+<section class="next-drop">
+  <div class="nd-shape circle-teal"></div>
+  <div class="nd-shape circle-mustard"></div>
+  <div class="nd-shape triangle-rose"></div>
+  <svg class="nd-shape squiggle-small" viewBox="0 0 90 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 12 Q18 3, 30 12 T54 12 T78 12 T86 12" stroke="#E8743C" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <div class="container">
+    <div class="nd-kicker">
+      <span>Up Next</span><span class="dot"></span><span>Drop 02</span>
+    </div>
+
+    <h2 class="nd-name">Still<br/><span style="font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;">casting.</span></h2>
+    <p class="nd-tagline">A different show. A different world. Same six pieces, numbered by hand.</p>
+
+    <div class="countdown">
+      <div class="cd-unit">
+        <span class="num" id="cd-days">58</span>
+        <span class="lbl">Days</span>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <span class="num" id="cd-hours">14</span>
+        <span class="lbl">Hours</span>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <span class="num" id="cd-mins">52</span>
+        <span class="lbl">Minutes</span>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <span class="num" id="cd-secs">18</span>
+        <span class="lbl">Seconds</span>
+      </div>
+    </div>
+
+    <div class="nd-date">
+      AIRS 06.15.2026 <span class="dot">●</span> 10:00 AM EDT
+    </div>
+
+    <form class="nd-form" onsubmit="event.preventDefault(); this.querySelector('input').value = &quot;You're on the list.&quot;; this.querySelector('input').setAttribute('readonly', true);">
+      <input type="email" placeholder="your@email.com — one email when it drops" required />
+      <button type="submit">SET REMINDER</button>
+    </form>
+    <div class="nd-fineprint">One email. Drop day only. No filler.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="big-mono">TCT.</div>
+        <p>Title cards from the shows we love. Title Card Tees, est. 2026.</p>
+      </div>
+      <div class="footer-col">
+        <h5>SHOP</h5>
+        <ul>
+          <li><a href="#">The current drop</a></li>
+          <li><a href="#">Next drop</a></li>
+          <li><a href="#">How we drop</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>ABOUT</h5>
+        <ul>
+          <li><a href="#">Our story</a></li>
+          <li><a href="#">The fabric</a></li>
+          <li><a href="#">Sizing</a></li>
+          <li><a href="#">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>FOLLOW</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Email list</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Title Card Tees. All rights reserved.</div>
+      <div>Privacy · Terms · Accessibility</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Live countdown to Drop 02 — 06.15.2026 10:00 AM EDT
+  const target = new Date('2026-06-15T10:00:00-04:00').getTime();
+  const dEl = document.getElementById('cd-days');
+  const hEl = document.getElementById('cd-hours');
+  const mEl = document.getElementById('cd-mins');
+  const sEl = document.getElementById('cd-secs');
+  function tick() {
+    const now = Date.now();
+    const diff = target - now;
+    if (diff <= 0) {
+      dEl.textContent = hEl.textContent = mEl.textContent = sEl.textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    dEl.textContent = String(d).padStart(2, '0');
+    hEl.textContent = String(h).padStart(2, '0');
+    mEl.textContent = String(m).padStart(2, '0');
+    sEl.textContent = String(s).padStart(2, '0');
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
