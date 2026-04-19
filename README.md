@@ -29,7 +29,7 @@ sections/
   footer.liquid
   footer-group.json
   hero-airing.liquid          homepage hero with black now-airing card
-  detail-strip.liquid         14oz · limited · numbered · ships 48h · returns
+  detail-strip.liquid         garment-dyed · relaxed fit · capped 250 · POD · returns
   drop-grid.liquid            six-piece grid, sold-out overlay, card colors
   manifesto.liquid            ink background, tangerine italic accent
   next-drop.liquid            countdown + single-email capture

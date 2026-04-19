@@ -17,10 +17,10 @@
     "detail": {
       "type": "detail-strip",
       "blocks": {
-        "d1": { "type": "item", "settings": { "text": "14 oz COTTON" } },
-        "d2": { "type": "item", "settings": { "text": "LIMITED RUN" } },
-        "d3": { "type": "item", "settings": { "text": "NUMBERED BY HAND" } },
-        "d4": { "type": "item", "settings": { "text": "SHIPS IN 48 HOURS" } },
+        "d1": { "type": "item", "settings": { "text": "GARMENT-DYED COTTON" } },
+        "d2": { "type": "item", "settings": { "text": "RELAXED FIT" } },
+        "d3": { "type": "item", "settings": { "text": "CAPPED AT 250" } },
+        "d4": { "type": "item", "settings": { "text": "PRINTED ON DEMAND" } },
         "d5": { "type": "item", "settings": { "text": "FREE RETURNS" } }
       },
       "block_order": ["d1", "d2", "d3", "d4", "d5"]
@@ -32,7 +32,7 @@
         "title_lead": "Park",
         "title_italic": "Day.",
         "run_per_piece": 250,
-        "meta_copy": "Six title cards for the icons you know by heart — the hat, the birds, the leg, the flag, the swirl, the castle — drawn in the style of a blue heeler. Heavyweight 14 oz cotton. Hand-numbered on the interior hem tag."
+        "meta_copy": "Six title cards for the icons you know by heart — the hat, the birds, the leg, the flag, the swirl, the castle — drawn in the style of a blue heeler. Garment-dyed ring-spun cotton, soft out of the package. Each design capped at 250 — when the counter hits zero, it retires."
       },
       "blocks": {
         "p1": {

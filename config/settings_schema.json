@@ -81,7 +81,7 @@
         "type": "text",
         "id": "next_drop_tagline",
         "label": "Next drop tagline",
-        "default": "A different show. A different world. Same six pieces, numbered by hand."
+        "default": "A different show. A different world. Same cadence: six pieces, capped at 250 each."
       },
       {
         "type": "text",

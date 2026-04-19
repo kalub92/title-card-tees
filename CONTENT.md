@@ -14,7 +14,7 @@ The 90s didn't need to explain itself. The title cards didn't shout. The shows s
 We make shirts for the people who were there — and have since developed taste.
 
 ### How it works
-One drop at a time. Six pieces. 250 of each, numbered by hand on the hem tag. When they're gone, they don't come back. No restocks, no second chances, no apology.
+One drop at a time. Six pieces. Each design capped at 250. When they're gone, they don't come back. No restocks, no second chances, no apology.
 
 The archive is in your closet.
 
@@ -32,7 +32,7 @@ Template: `page`
 ### Body
 **Six pieces.** Every drop is six. Tied to a lived ritual — Saturday morning, after school, Blockbuster night, basic cable.
 
-**250 per piece.** Hand-numbered on the hem tag. When the last one ships, the design is retired.
+**250 per piece.** Each design is capped at 250 sold. When the last one ships, the design is retired for good.
 
 **One email.** The morning the drop airs. No teasers, no weekly newsletter. Set the reminder and we'll be quiet until the moment arrives.
 
@@ -47,11 +47,13 @@ Handle: `fabric`
 Template: `page`
 
 ### Body
-**14 oz heavyweight cotton.** Cut and sewn in the US. Pre-shrunk. Drapes like something you'd keep for ten years because you will.
+**6.1 oz ring-spun cotton.** Garment-dyed and pre-shrunk on a Comfort Colors 1717 blank. Soft out of the package, structured enough to keep its shape for ten years because you will.
 
-**Discharge print on colors.** Keeps the hand soft. No stiff-box front panel.
+**Printed on demand.** We don't warehouse shirts. Your piece is made when you order it, then shipped. Less waste, no dead stock.
 
-**Hem tag.** Sewn inside the left hem. Carries the drop number, the piece name, and your unit (`042 / 250`). Small, not a billboard.
+**Capped at 250.** Each design in a drop is limited to 250 units sold. When the counter hits zero, it retires for good.
+
+**A note on color.** Garment-dyeing produces slight variation piece to piece — softer in one spot, a half-shade off in another. It's a feature of the process, not a defect.
 
 ---
 
@@ -81,7 +83,7 @@ Template: `page`
 ### Body
 Free returns within 30 days of delivery. Unworn, tags on, no cigarette smoke or detergent residue. We'll send a prepaid label.
 
-Because pieces are hand-numbered in limited runs, exchanges depend on what's left. If your size is gone, we'll refund. We won't restock the design just to fulfill an exchange.
+Because each design is capped at 250, exchanges depend on what's left. If your size is gone, we'll refund. We won't restock the design just to fulfill an exchange.
 
 Email hello@titlecardtees.com with your order number.
 

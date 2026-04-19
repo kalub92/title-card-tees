@@ -30,8 +30,8 @@
       "notify_when_back": "When back",
       "size": "Size",
       "select_size": "Select a size",
-      "run_of": "Numbered run of {{ count }}",
-      "hand_numbered": "Numbered by hand on the hem tag",
+      "run_of": "Capped at {{ count }}",
+      "hand_numbered": "When the counter hits zero, the design retires",
       "shipping": "Ships in 48 hours",
       "quantity": "Quantity"
     }

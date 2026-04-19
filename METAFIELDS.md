@@ -12,7 +12,7 @@ Create these in Shopify admin → Settings → Custom data. The theme reads from
 | `tct.card_color` | single-line text (choice) | yes | `mustard` | One of: `mustard`, `teal`, `rose`, `ink`, `tangerine`, `cream` |
 | `tct.short_desc` | single-line text | yes | `Mustard heavyweight tee. Cereal-box title card on the front.` | One-sentence card blurb |
 | `tct.title_card_svg` | multi-line text (raw SVG) | optional | `<svg>…</svg>` | Title-card illustration. Leave blank to use product featured image. |
-| `tct.fabric` | single-line text | optional | `14 oz heavyweight cotton` | Detail strip context |
+| `tct.fabric` | single-line text | optional | `6.1 oz garment-dyed ring-spun cotton` | Detail strip context |
 | `tct.hangtag_prefix` | single-line text | optional | `042` | Shown in PDP hangtag preview as `042 / 250` |
 
 ## Collection metafields (namespace: `tct`)
