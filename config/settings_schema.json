@@ -47,19 +47,19 @@
         "type": "text",
         "id": "current_drop_name",
         "label": "Drop name",
-        "default": "Saturday Morning"
+        "default": "Park Day"
       },
       {
         "type": "text",
         "id": "current_drop_tagline",
         "label": "Drop tagline",
-        "default": "Saturday morning, properly dressed."
+        "default": "Best episode of the year."
       },
       {
         "type": "text",
         "id": "current_drop_date_label",
         "label": "Air date label",
-        "default": "NOW AIRING · UNTIL SOLD OUT"
+        "default": "NOW AIRING · DROP 01"
       },
       {
         "type": "header",
@@ -75,26 +75,26 @@
         "type": "text",
         "id": "next_drop_name",
         "label": "Next drop name",
-        "default": "After school."
+        "default": "Still casting."
       },
       {
         "type": "text",
         "id": "next_drop_tagline",
         "label": "Next drop tagline",
-        "default": "3 PM energy. Juice boxes. Homework avoided."
+        "default": "A different show. A different world. Same six pieces, numbered by hand."
       },
       {
         "type": "text",
         "id": "next_drop_datetime",
         "label": "Next drop date/time (ISO 8601)",
-        "default": "2026-05-15T10:00:00-04:00",
-        "info": "Used by the countdown. Format: 2026-05-15T10:00:00-04:00"
+        "default": "2026-06-15T10:00:00-04:00",
+        "info": "Used by the countdown. Format: 2026-06-15T10:00:00-04:00"
       },
       {
         "type": "text",
         "id": "next_drop_date_display",
         "label": "Next drop date display",
-        "default": "AIRS 05.15.2026 · 10:00 AM EDT"
+        "default": "AIRS 06.15.2026 · 10:00 AM EDT"
       }
     ]
   },
@@ -109,31 +109,31 @@
         "type": "text",
         "id": "manifesto_headline_lead",
         "label": "Manifesto headline lead",
-        "default": "Not a throwback."
+        "default": "Not reference."
       },
       {
         "type": "text",
         "id": "manifesto_headline_italic",
         "label": "Manifesto headline italic",
-        "default": "A return."
+        "default": "Reverence."
       },
       {
         "type": "textarea",
         "id": "manifesto_body",
         "label": "Manifesto body",
-        "default": "The 90s didn't need to explain itself. The title cards didn't shout. The shows started and you knew."
+        "default": "The best shows don't announce themselves. The title card comes up, and you already know."
       },
       {
         "type": "textarea",
         "id": "manifesto_pullquote",
         "label": "Manifesto pullquote",
-        "default": "We make shirts for the people who were there — and have since developed taste."
+        "default": "Shirts for the people who know the title card by heart."
       },
       {
         "type": "textarea",
         "id": "manifesto_close",
         "label": "Manifesto close",
-        "default": "One drop at a time. Numbered. Limited. When it's gone, it's gone. The archive is in your closet."
+        "default": "Every drop pairs a show we love with a world we come back to. One drop at a time. Numbered. Limited. When it's gone, it's gone. The archive is in your closet."
       }
     ]
   }

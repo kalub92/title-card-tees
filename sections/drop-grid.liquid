@@ -1,118 +1,162 @@
 <style>
-  .collection {
-    padding: 110px 0 120px;
-    border-bottom: 2px solid var(--ink);
+  .collection { padding: 110px 0 120px; }
+  .collection .section-head {
+    grid-template-columns: 1.1fr 0.9fr;
+    margin-bottom: 72px;
   }
+  .collection .section-head .label { color: var(--tangerine); }
+  .collection .section-head .meta .counter {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+  .collection .section-head .meta p {
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 420px;
+  }
+
   .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 28px;
   }
   .product {
-    border: 2px solid var(--ink);
-    background: var(--cream);
     display: flex;
     flex-direction: column;
+    border: 2px solid var(--ink);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--cream);
     transition: transform 0.3s ease;
     position: relative;
-    overflow: hidden;
   }
-  .product:hover { transform: translateY(-6px); }
+  .product:hover { transform: translateY(-4px); }
+  .product.sold-out { opacity: 0.92; }
+
   .product-slot {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    padding: 12px 18px;
-    background: var(--cream-deep);
-    border-bottom: 1.5px solid var(--ink);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 16px 22px;
+    background: var(--cream-deep);
+    border-bottom: 2px solid var(--ink);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
   }
   .product-slot .slot-time { color: var(--tangerine); }
-  .product-slot .run {
-    opacity: 0.55;
-    font-weight: 400;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-  }
+  .product-slot .run { opacity: 0.6; }
+
   .product-card {
-    aspect-ratio: 4 / 5;
+    background: var(--drop-bg);
+    aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 32px;
     position: relative;
     overflow: hidden;
+    border-bottom: 2px solid var(--ink);
   }
-  .product-card.card-mustard { background: var(--mustard); }
-  .product-card.card-teal { background: var(--teal); }
-  .product-card.card-rose { background: var(--rose); }
-  .product-card.card-ink { background: var(--ink); }
-  .product-card.card-tangerine { background: var(--tangerine); }
-  .product-card.card-cream { background: var(--cream-deep); }
-  .product-card-placeholder { width: 100%; }
-  .product-card img { width: 100%; height: 100%; object-fit: contain; }
+  .product-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 25% 25%, var(--drop-grain) 1px, transparent 1.5px),
+      radial-gradient(circle at 75% 75%, rgba(30,58,111,0.03) 1px, transparent 1.5px);
+    background-size: 40px 40px, 55px 55px;
+    pointer-events: none;
+  }
+  .product-art {
+    width: 78%;
+    max-width: 240px;
+    filter: drop-shadow(0 6px 14px rgba(30,58,111,0.12));
+    position: relative;
+    z-index: 1;
+  }
+  .product-card-placeholder {
+    width: 78%;
+    max-width: 240px;
+    position: relative;
+    z-index: 1;
+  }
+  .sold-out-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(30, 58, 111, 0.78);
+    color: var(--drop-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.12em;
+    z-index: 2;
+    transform: rotate(-4deg);
+  }
+
   .product-info {
     padding: 22px 22px 24px;
-    border-top: 1.5px solid var(--ink);
-    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
   .product-info .name {
     font-family: 'Unbounded', sans-serif;
     font-size: 22px;
     font-weight: 800;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.01em;
     margin-bottom: 6px;
   }
   .product-info .desc {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.55;
     opacity: 0.75;
     margin-bottom: 18px;
+    flex: 1;
   }
   .product-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(21,20,25,0.18);
   }
-  .price {
+  .product-row .price {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 20px;
-    letter-spacing: -0.005em;
+    font-size: 18px;
+    color: var(--tangerine);
+    letter-spacing: 0.02em;
   }
   .quick-shop {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 10px 18px;
     font-family: 'Archivo Black', sans-serif;
     font-size: 11px;
-    letter-spacing: 0.15em;
-    padding: 10px 16px;
-    border: 1.5px solid var(--ink);
+    letter-spacing: 0.14em;
     border-radius: 100px;
-    transition: all 0.2s;
+    transition: background 0.2s, transform 0.2s;
     display: inline-block;
   }
-  .quick-shop:hover { background: var(--ink); color: var(--cream); }
-  .product.sold-out .product-card::after {
-    content: 'SOLD OUT';
-    position: absolute;
-    inset: 0;
-    background: rgba(21, 20, 25, 0.82);
-    color: var(--cream);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 20px;
-    letter-spacing: 0.3em;
+  .quick-shop:hover { background: var(--tangerine); transform: translateY(-1px); }
+  .quick-shop.notify {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
   }
+  .quick-shop.notify:hover { background: var(--ink); color: var(--cream); }
+
   @media (max-width: 900px) {
     .collection { padding: 70px 0 80px; }
+    .collection .section-head { grid-template-columns: 1fr; }
     .product-grid { grid-template-columns: 1fr; gap: 20px; }
   }
 </style>
 
-{%- assign drop_handle = section.settings.collection.handle | default: settings.current_drop.handle -%}
 {%- if section.settings.collection != blank -%}
   {%- assign drop = section.settings.collection -%}
 {%- elsif settings.current_drop != blank -%}
@@ -120,7 +164,7 @@
 {%- endif -%}
 
 {%- assign products = drop.products -%}
-{%- assign total = products.size -%}
+{%- assign total = products.size | default: 0 -%}
 
 {%- assign all_sold = true -%}
 {%- for p in products -%}
@@ -133,13 +177,16 @@
       <div>
         <div class="label">{{ section.settings.label | default: 'Now Airing · Drop 01' }}</div>
         <h2>
-          {{ section.settings.title_lead | default: 'The Saturday' }}<br/>
-          {{ section.settings.title_middle | default: 'Morning' }}
-          {%- if section.settings.title_italic != blank %} <span class="ital">{{ section.settings.title_italic }}</span>{% endif -%}
+          {{ section.settings.title_lead | default: 'Park' }}
+          {%- if section.settings.title_italic != blank %}<br/><span class="ital">{{ section.settings.title_italic }}</span>{% endif -%}
         </h2>
       </div>
       <div class="meta">
-        <div class="counter">{{ total }} PIECES · {{ section.settings.run_per_piece | default: 250 }} EACH</div>
+        {%- if products.size > 0 -%}
+          <div class="counter">{{ total }} PIECES · {{ section.settings.run_per_piece | default: 250 }} EACH</div>
+        {%- else -%}
+          <div class="counter">{{ section.blocks.size }} PIECES · {{ section.settings.run_per_piece | default: 250 }} EACH</div>
+        {%- endif -%}
         <p>{{ section.settings.meta_copy }}</p>
       </div>
     </div>
@@ -156,20 +203,18 @@
               <span class="slot-time">{{ product.metafields.tct.slot_time | default: '—' }}</span>
               <span class="run">{{ product.metafields.tct.run_position | default: pos }} / {{ total_padded }} · {{ product.metafields.tct.run_size | default: 250 }} MADE</span>
             </div>
-            {%- assign card_color = product.metafields.tct.card_color | default: 'cream' | downcase -%}
-            <a class="product-card card-{{ card_color }}" href="{{ product.url }}" aria-label="{{ product.title }}">
-              {%- if product.metafields.tct.title_card_svg != blank -%}
-                {{ product.metafields.tct.title_card_svg }}
-              {%- elsif product.featured_image != blank -%}
-                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | default: product.title }}" loading="lazy" width="600" height="750">
+            <a class="product-card" href="{{ product.url }}" aria-label="{{ product.title }}">
+              {%- if product.featured_image != blank -%}
+                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | default: product.title }}" class="product-art" loading="lazy" width="600" height="600">
               {%- else -%}
-                <div class="product-card-placeholder" aria-hidden="true">
-                  <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
-                    <rect x="40" y="95" width="200" height="85" rx="10" fill="#151419"/>
-                    <text x="140" y="148" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="26" fill="#F4EDE0">{{ product.title | upcase }}</text>
-                  </svg>
-                </div>
+                <svg class="product-card-placeholder" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="40" y="100" width="200" height="80" rx="10" fill="#1E3A6F"/>
+                  <text x="140" y="150" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="22" fill="#F4DEB3">{{ product.title | upcase }}</text>
+                </svg>
               {%- endif -%}
+              {%- unless product.available -%}
+                <div class="sold-out-overlay">SOLD OUT</div>
+              {%- endunless -%}
             </a>
             <div class="product-info">
               <div class="name">{{ product.title }}</div>
@@ -179,19 +224,68 @@
                 {%- if product.available -%}
                   <a href="{{ product.url }}" class="quick-shop">ADD TO BAG</a>
                 {%- else -%}
-                  <a href="{{ product.url }}" class="quick-shop">NOTIFY WHEN BACK</a>
+                  <a href="{{ product.url }}" class="quick-shop notify">NOTIFY · DROP {{ settings.next_drop_number }}</a>
                 {%- endif -%}
               </div>
             </div>
           </article>
         {% endfor %}
       </div>
-    {%- else -%}
-      <p class="meta-text">No drop configured. Set the current drop in theme settings.</p>
-    {%- endif -%}
 
-    {%- if all_sold and products.size > 0 -%}
-      <p class="meta-text" style="margin-top: 40px; text-align: center;">The drop is off the air. The next one is below.</p>
+      {%- if all_sold -%}
+        <p class="meta-text" style="margin-top: 40px; text-align: center;">The drop is off the air. The next one is below.</p>
+      {%- endif -%}
+
+    {%- elsif section.blocks.size > 0 -%}
+      {%- comment -%}
+        Fallback preview — used when no Shopify collection is connected yet.
+        Lets the merchant see the drop as art-directed in theme settings.
+      {%- endcomment -%}
+      <div class="product-grid">
+        {%- for block in section.blocks -%}
+          {%- assign is_sold = block.settings.sold_out -%}
+          {%- capture pos_str -%}0{{ forloop.index }}{%- endcapture -%}
+          {%- assign pos = pos_str | slice: -2, 2 -%}
+          {%- capture total_str -%}0{{ section.blocks.size }}{%- endcapture -%}
+          {%- assign total_padded = total_str | slice: -2, 2 -%}
+          <article class="product {% if is_sold %}sold-out{% endif %}" {{ block.shopify_attributes }}>
+            <div class="product-slot">
+              <span class="slot-time">{{ block.settings.slot_time }}</span>
+              <span class="run">{{ pos }} / {{ total_padded }} · {{ block.settings.run_size | default: 250 }} MADE</span>
+            </div>
+            <div class="product-card">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.image.alt | default: block.settings.name }}" class="product-art" loading="lazy" width="600" height="600">
+              {%- elsif block.settings.image_asset != blank -%}
+                <img src="{{ block.settings.image_asset | asset_url }}" alt="{{ block.settings.name }}" class="product-art" loading="lazy">
+              {%- else -%}
+                <svg class="product-card-placeholder" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="40" y="100" width="200" height="80" rx="10" fill="#1E3A6F"/>
+                  <text x="140" y="150" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="22" fill="#F4DEB3">{{ block.settings.name | upcase }}</text>
+                </svg>
+              {%- endif -%}
+              {%- if is_sold -%}
+                <div class="sold-out-overlay">SOLD OUT</div>
+              {%- endif -%}
+            </div>
+            <div class="product-info">
+              <div class="name">{{ block.settings.name }}</div>
+              <div class="desc">{{ block.settings.description }}</div>
+              <div class="product-row">
+                <span class="price">{{ block.settings.price | default: '$48' }}</span>
+                {%- if is_sold -%}
+                  <span class="quick-shop notify">NOTIFY · DROP {{ settings.next_drop_number }}</span>
+                {%- else -%}
+                  <span class="quick-shop">ADD TO BAG</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+
+    {%- else -%}
+      <p class="meta-text">No drop configured. Set the current drop in theme settings, or add preview blocks in the drop grid section.</p>
     {%- endif -%}
   </div>
 </section>
@@ -202,13 +296,29 @@
   "tag": "div",
   "class": "drop-grid-section",
   "settings": [
-    { "type": "collection", "id": "collection", "label": "Drop collection", "info": "Defaults to the current drop from theme settings." },
+    { "type": "collection", "id": "collection", "label": "Drop collection", "info": "Defaults to the current drop from theme settings. When empty, preview blocks below are used." },
     { "type": "text", "id": "label", "label": "Eyebrow label", "default": "Now Airing · Drop 01" },
-    { "type": "text", "id": "title_lead", "label": "Headline line 1", "default": "The Saturday" },
-    { "type": "text", "id": "title_middle", "label": "Headline line 2", "default": "Morning" },
-    { "type": "text", "id": "title_italic", "label": "Italic word", "default": "Drop." },
+    { "type": "text", "id": "title_lead", "label": "Headline line 1", "default": "Park" },
+    { "type": "text", "id": "title_italic", "label": "Italic line", "default": "Day." },
     { "type": "number", "id": "run_per_piece", "label": "Run per piece", "default": 250 },
-    { "type": "textarea", "id": "meta_copy", "label": "Meta copy", "default": "Six title cards for the ritual. Each piece is heavyweight 14 oz cotton, hand-numbered inside the hem tag, limited to 250. When they're gone, they don't come back." }
+    { "type": "textarea", "id": "meta_copy", "label": "Meta copy", "default": "Six title cards for the icons you know by heart — the hat, the birds, the leg, the flag, the swirl, the castle — drawn in the style of a blue heeler. Heavyweight 14 oz cotton. Hand-numbered on the interior hem tag." }
+  ],
+  "blocks": [
+    {
+      "type": "preview_product",
+      "name": "Preview product",
+      "limit": 9,
+      "settings": [
+        { "type": "text", "id": "name", "label": "Product name", "default": "The Hat" },
+        { "type": "text", "id": "slot_time", "label": "Slot time", "default": "OPENING" },
+        { "type": "textarea", "id": "description", "label": "Short description", "default": "The wizard hat. You know the one. Stars, crescent, enough." },
+        { "type": "text", "id": "price", "label": "Price display", "default": "$48" },
+        { "type": "number", "id": "run_size", "label": "Run size", "default": 250 },
+        { "type": "image_picker", "id": "image", "label": "Product art" },
+        { "type": "text", "id": "image_asset", "label": "Theme asset filename", "info": "Fallback when no uploaded image is set. e.g. magic_hat.jpg" },
+        { "type": "checkbox", "id": "sold_out", "label": "Show as sold out", "default": false }
+      ]
+    }
   ],
   "presets": [
     { "name": "Drop grid" }

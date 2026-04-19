@@ -5,12 +5,12 @@
     "ticker": {
       "type": "announcement-ticker",
       "blocks": {
-        "t1": { "type": "item", "settings": { "leading_label": "NOW AIRING", "text": "SATURDAY MORNING" } },
-        "t2": { "type": "item", "settings": { "text": "ONE DROP AT A TIME · WHEN IT'S GONE, IT'S GONE" } },
-        "t3": { "type": "item", "settings": { "text": "FREE SHIPPING OVER $125" } },
-        "t4": { "type": "item", "settings": { "text": "NEXT DROP · 05.15" } },
-        "t5": { "type": "item", "settings": { "leading_label": "NOW AIRING", "text": "SATURDAY MORNING" } },
-        "t6": { "type": "item", "settings": { "text": "6 PIECES · 250 EACH · NUMBERED BY HAND" } }
+        "t1": { "type": "item", "settings": { "leading_label": "NOW AIRING", "text": "PARK DAY" } },
+        "t2": { "type": "item", "settings": { "text": "DROP 01 · PARK ICONS, HEELER-STYLE" } },
+        "t3": { "type": "item", "settings": { "text": "6 PIECES · 250 EACH · NUMBERED BY HAND" } },
+        "t4": { "type": "item", "settings": { "text": "FREE SHIPPING OVER $125" } },
+        "t5": { "type": "item", "settings": { "text": "ONE DROP AT A TIME · WHEN IT'S GONE, IT'S GONE" } },
+        "t6": { "type": "item", "settings": { "leading_label": "NOW AIRING", "text": "PARK DAY" } }
       },
       "block_order": ["t1", "t2", "t3", "t4", "t5", "t6"]
     },

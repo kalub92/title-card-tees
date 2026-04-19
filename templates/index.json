@@ -3,14 +3,14 @@
     "hero": {
       "type": "hero-airing",
       "settings": {
-        "headline_lead": "Saturday",
-        "headline_middle": "morning,",
-        "headline_italic": "properly",
-        "headline_tail": "dressed.",
-        "lead": "Six pieces for the holy ritual. Heavyweight cotton, numbered runs of 250, inspired by the title cards that shaped an entire generation's Saturday.",
+        "headline_lead": "Park day.",
+        "headline_middle": "Best",
+        "headline_italic": "episode",
+        "headline_tail": "of the year.",
+        "lead": "Title cards from the shows we love, applied to the icons we know by heart. Drop 01 pairs the park's greatest hits with the style of a certain blue heeler. Six pieces. Heavyweight cotton. Numbered runs of 250.",
         "cta_label": "SHOP THE DROP",
         "meta_text": "One drop. When it's gone, it's gone.",
-        "slot_time": "06:00 AM",
+        "card_subtitle": "a title card tees original",
         "est_text": "EST. 2026"
       }
     },
@@ -29,17 +29,86 @@
       "type": "drop-grid",
       "settings": {
         "label": "Now Airing · Drop 01",
-        "title_lead": "The Saturday",
-        "title_middle": "Morning",
-        "title_italic": "Drop.",
+        "title_lead": "Park",
+        "title_italic": "Day.",
         "run_per_piece": 250,
-        "meta_copy": "Six title cards for the ritual. Each piece is heavyweight 14 oz cotton, hand-numbered inside the hem tag, limited to 250. When they're gone, they don't come back."
-      }
+        "meta_copy": "Six title cards for the icons you know by heart — the hat, the birds, the leg, the flag, the swirl, the castle — drawn in the style of a blue heeler. Heavyweight 14 oz cotton. Hand-numbered on the interior hem tag."
+      },
+      "blocks": {
+        "p1": {
+          "type": "preview_product",
+          "settings": {
+            "name": "The Hat",
+            "slot_time": "OPENING",
+            "description": "The wizard hat. You know the one. Stars, crescent, enough.",
+            "price": "$48",
+            "run_size": 250,
+            "image_asset": "magic_hat.jpg"
+          }
+        },
+        "p2": {
+          "type": "preview_product",
+          "settings": {
+            "name": "The Perch",
+            "slot_time": "MIDMORNING",
+            "description": "Four parrots. One branch. That one song you can't unhear.",
+            "price": "$48",
+            "run_size": 250,
+            "image_asset": "bird_hut.jpg"
+          }
+        },
+        "p3": {
+          "type": "preview_product",
+          "settings": {
+            "name": "The Leg",
+            "slot_time": "LUNCH",
+            "description": "Smoked. Held like a trophy. Gone in a single afternoon.",
+            "price": "$48",
+            "run_size": 250,
+            "sold_out": true,
+            "image_asset": "meat_stick.jpg"
+          }
+        },
+        "p4": {
+          "type": "preview_product",
+          "settings": {
+            "name": "The Flag",
+            "slot_time": "AFTERNOON",
+            "description": "Red drop. Crossed blades. The ride that gave us the song.",
+            "price": "$48",
+            "run_size": 250,
+            "image_asset": "pirate_boat.jpg"
+          }
+        },
+        "p5": {
+          "type": "preview_product",
+          "settings": {
+            "name": "The Whip",
+            "slot_time": "DUSK",
+            "description": "Pineapple. Swirl. Cup. No notes.",
+            "price": "$48",
+            "run_size": 250,
+            "image_asset": "pineapple_swirl.jpg"
+          }
+        },
+        "p6": {
+          "type": "preview_product",
+          "settings": {
+            "name": "The Castle",
+            "slot_time": "FIREWORKS",
+            "description": "Turrets you'd recognize at a quarter mile. The silhouette.",
+            "price": "$48",
+            "run_size": 250,
+            "image_asset": "theme_park.jpg"
+          }
+        }
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"]
     },
     "manifesto": {
       "type": "manifesto",
       "settings": {
-        "eyebrow": "Est. 2026"
+        "eyebrow": "2026"
       }
     },
     "next": {

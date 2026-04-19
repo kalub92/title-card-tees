@@ -3,10 +3,11 @@
     padding: 72px 0 100px;
     border-bottom: 2px solid var(--ink);
     position: relative;
+    overflow: hidden;
   }
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: 1.05fr 1fr;
     gap: 80px;
     align-items: center;
   }
@@ -20,117 +21,162 @@
     margin-bottom: 36px;
   }
   .hero-text .lead {
-    max-width: 440px;
+    max-width: 460px;
     font-size: 18px;
     line-height: 1.55;
     margin-bottom: 44px;
   }
   .cta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+
   .hero-card-wrap { position: relative; }
+  .hero-shape { position: absolute; z-index: 0; opacity: 0.9; }
+  .hero-shape.triangle {
+    width: 0; height: 0;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-bottom: 38px solid var(--rose);
+    top: -18px; left: -28px;
+    transform: rotate(-18deg);
+  }
+  .hero-shape.dots {
+    top: 50%; right: -40px;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .hero-shape.dots span {
+    width: 14px; height: 14px;
+    background: var(--teal);
+    border-radius: 50%;
+  }
+  .hero-shape.arc {
+    bottom: -30px; left: -50px;
+    width: 100px; height: 50px;
+    border: 10px solid var(--mustard);
+    border-bottom: none;
+    border-radius: 100px 100px 0 0;
+    transform: rotate(12deg);
+  }
+
   .hero-card {
-    background: var(--ink);
-    border-radius: 20px;
-    padding: 60px 50px;
-    aspect-ratio: 1 / 1.05;
+    background: var(--drop-bg);
+    border-radius: 24px;
+    padding: 38px 42px 34px;
+    aspect-ratio: 1 / 1.08;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 30px 60px rgba(21, 20, 25, 0.18);
+    box-shadow: 0 30px 60px var(--drop-shadow);
+    z-index: 1;
   }
-  .hero-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .hero-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, var(--drop-grain) 1px, transparent 1.5px),
+      radial-gradient(circle at 70% 60%, rgba(30,58,111,0.03) 1px, transparent 1.5px),
+      radial-gradient(circle at 40% 85%, var(--drop-grain) 1px, transparent 1.5px);
+    background-size: 60px 60px, 80px 80px, 50px 50px;
+    pointer-events: none;
+  }
+
+  .hero-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
   .hero-card-top .ts {
     font-family: 'Archivo Black', sans-serif;
-    color: var(--tangerine);
-    font-size: 13px;
-    letter-spacing: 0.15em;
+    color: var(--drop-ink);
+    font-size: 12px;
+    letter-spacing: 0.22em;
   }
   .hero-card-top .airing {
     font-family: 'DM Sans', sans-serif;
-    color: var(--cream);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    font-weight: 600;
+    color: var(--drop-ink);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    font-weight: 700;
     display: flex; align-items: center; gap: 8px;
   }
   .hero-card-top .airing::before {
     content: '';
-    width: 8px; height: 8px;
+    width: 7px; height: 7px;
     border-radius: 50%;
     background: var(--tangerine);
     animation: pulse 1.8s ease-in-out infinite;
   }
-  .hero-card-center { text-align: center; }
-  .hero-card-center .label {
-    font-family: 'DM Sans', sans-serif;
-    color: var(--cream);
-    font-size: 12px;
-    letter-spacing: 0.28em;
-    opacity: 0.6;
-    margin-bottom: 14px;
+
+  .hero-card-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    text-align: center;
   }
-  .hero-card-center h2 {
+  .hero-card-art {
+    width: 78%;
+    max-width: 340px;
+    margin: 0 auto;
+    filter: drop-shadow(0 8px 18px rgba(30,58,111,0.15));
+  }
+  .hero-card h2 {
     font-family: 'Archivo Black', sans-serif;
-    color: var(--cream);
-    font-size: clamp(38px, 5vw, 62px);
-    line-height: 1;
-    letter-spacing: -0.015em;
-    margin-bottom: 8px;
+    color: var(--drop-ink);
+    font-size: clamp(44px, 5.4vw, 64px);
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    margin-top: 14px;
     text-transform: uppercase;
   }
-  .hero-card-center h2 .alt { color: var(--tangerine); }
-  .hero-card-center .squiggle { margin: 18px auto 0; }
-  .hero-card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
-  .hero-card-bottom .side {
+  .hero-card h2 .sub {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.38em;
+    letter-spacing: 0.02em;
+    margin-top: 10px;
+    opacity: 0.7;
+    text-transform: none;
+  }
+  .hero-card-bottom {
+    display: flex;
+    justify-content: space-between;
     font-family: 'Archivo Black', sans-serif;
-    color: var(--cream);
     font-size: 11px;
-    letter-spacing: 0.15em;
-    opacity: 0.65;
+    letter-spacing: 0.2em;
+    color: var(--drop-ink);
+    opacity: 0.6;
+    position: relative;
+    z-index: 2;
   }
-  .hero-shape { position: absolute; z-index: 5; pointer-events: none; }
-  .hero-shape.triangle {
-    top: -20px; left: -22px;
-    width: 0; height: 0;
-    border-left: 22px solid transparent;
-    border-right: 22px solid transparent;
-    border-bottom: 38px solid var(--mustard);
-    transform: rotate(-15deg);
-  }
-  .hero-shape.arc {
-    bottom: -14px; right: -14px;
-    width: 70px; height: 70px;
-    border: 9px solid var(--teal);
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-radius: 50%;
-    transform: rotate(-30deg);
-  }
-  .hero-shape.dots {
-    top: 40%; right: -30px;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .hero-shape.dots span {
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    background: var(--rose);
-  }
+
   @media (max-width: 900px) {
     .hero { padding: 50px 0 70px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 50px; }
-    .hero-card { padding: 40px 30px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 60px; }
+    .hero-text h1 { font-size: clamp(46px, 12vw, 70px); }
     .hero-shape.dots { display: none; }
+    .hero-shape.arc { display: none; }
   }
 </style>
 
 {%- assign drop_name = settings.current_drop_name -%}
 {%- assign drop_number = settings.current_drop_number -%}
-{%- comment -%} Split drop name for two-line display {%- endcomment -%}
-{%- assign drop_words = drop_name | split: ' ' -%}
-{%- assign drop_first = drop_words | first | upcase -%}
-{%- assign drop_rest = drop_words | shift | join: ' ' | upcase -%}
-{%- if drop_rest == blank -%}{%- assign drop_rest = '' -%}{%- endif -%}
+
+{%- if section.settings.hero_art != blank -%}
+  {%- assign hero_art_src = section.settings.hero_art | image_url: width: 680 -%}
+  {%- assign hero_art_alt = section.settings.hero_art.alt | default: drop_name -%}
+{%- else -%}
+  {%- assign hero_art_src = 'theme_park.jpg' | asset_url -%}
+  {%- assign hero_art_alt = drop_name -%}
+{%- endif -%}
 
 <div class="hero">
   <div class="container">
@@ -138,10 +184,10 @@
       <div class="hero-text">
         <div class="kicker"><span class="live-dot"></span> {{ settings.current_drop_date_label }}</div>
         <h1>
-          {{ section.settings.headline_lead | default: 'Saturday' }}<br/>
-          {{ section.settings.headline_middle | default: 'morning,' }}<br/>
-          <span class="ital">{{ section.settings.headline_italic | default: 'properly' }}</span><br/>
-          {{ section.settings.headline_tail | default: 'dressed.' }}
+          {{ section.settings.headline_lead | default: 'Park day.' }}<br/>
+          {{ section.settings.headline_middle | default: 'Best' }}
+          {%- if section.settings.headline_italic != blank %} <span class="ital">{{ section.settings.headline_italic }}</span>{% endif -%}<br/>
+          {{ section.settings.headline_tail | default: 'of the year.' }}
         </h1>
         <p class="lead">{{ section.settings.lead }}</p>
         <div class="cta-row">
@@ -149,25 +195,24 @@
           <span class="meta-text">{{ section.settings.meta_text | default: "One drop. When it's gone, it's gone." }}</span>
         </div>
       </div>
+
       <div class="hero-card-wrap">
-        <div class="hero-shape triangle"></div>
-        <div class="hero-shape dots"><span></span><span></span><span></span></div>
-        <div class="hero-shape arc"></div>
+        <div class="hero-shape triangle" aria-hidden="true"></div>
+        <div class="hero-shape dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="hero-shape arc" aria-hidden="true"></div>
+
         <div class="hero-card">
           <div class="hero-card-top">
-            <div class="ts">{{ section.settings.slot_time | default: '06:00 AM' }}</div>
+            <div class="ts">DROP {{ drop_number }}</div>
             <div class="airing">NOW AIRING</div>
           </div>
           <div class="hero-card-center">
-            <div class="label">DROP NO. {{ drop_number }}</div>
-            <h2>
-              {{ drop_first }}{% if drop_rest != '' %}<br/><span class="alt">{{ drop_rest }}</span>{% endif %}
-            </h2>
-            {% render 'squiggle', width: 200 %}
+            <img src="{{ hero_art_src }}" alt="{{ hero_art_alt | escape }}" class="hero-card-art" loading="eager" />
+            <h2>{{ drop_name | upcase }}<span class="sub">{{ section.settings.card_subtitle | default: 'a title card tees original' }}</span></h2>
           </div>
           <div class="hero-card-bottom">
-            <span class="side">VOL. {{ drop_number }}</span>
-            <span class="side">{{ section.settings.est_text | default: 'EST. 2026' }}</span>
+            <span>VOL. {{ drop_number }}</span>
+            <span>{{ section.settings.est_text | default: 'EST. 2026' }}</span>
           </div>
         </div>
       </div>
@@ -181,14 +226,15 @@
   "tag": "section",
   "class": "hero-section",
   "settings": [
-    { "type": "text", "id": "headline_lead", "label": "Headline line 1", "default": "Saturday" },
-    { "type": "text", "id": "headline_middle", "label": "Headline line 2", "default": "morning," },
-    { "type": "text", "id": "headline_italic", "label": "Italic word", "default": "properly", "info": "Single word in Fraunces italic — per brand rules." },
-    { "type": "text", "id": "headline_tail", "label": "Headline line 4", "default": "dressed." },
-    { "type": "textarea", "id": "lead", "label": "Lead paragraph", "default": "Six pieces for the holy ritual. Heavyweight cotton, numbered runs of 250, inspired by the title cards that shaped an entire generation's Saturday." },
+    { "type": "text", "id": "headline_lead", "label": "Headline line 1", "default": "Park day." },
+    { "type": "text", "id": "headline_middle", "label": "Headline line 2", "default": "Best" },
+    { "type": "text", "id": "headline_italic", "label": "Italic word", "default": "episode", "info": "Single word in Fraunces italic — per brand rules." },
+    { "type": "text", "id": "headline_tail", "label": "Headline line 3", "default": "of the year." },
+    { "type": "textarea", "id": "lead", "label": "Lead paragraph", "default": "Title cards from the shows we love, applied to the icons we know by heart. Drop 01 pairs the park's greatest hits with the style of a certain blue heeler. Six pieces. Heavyweight cotton. Numbered runs of 250." },
     { "type": "text", "id": "cta_label", "label": "CTA label", "default": "SHOP THE DROP" },
     { "type": "text", "id": "meta_text", "label": "CTA meta text", "default": "One drop. When it's gone, it's gone." },
-    { "type": "text", "id": "slot_time", "label": "Hero card timestamp", "default": "06:00 AM" },
+    { "type": "image_picker", "id": "hero_art", "label": "Hero card art", "info": "Square-ish illustration that anchors the drop card." },
+    { "type": "text", "id": "card_subtitle", "label": "Hero card subtitle", "default": "a title card tees original" },
     { "type": "text", "id": "est_text", "label": "Hero card established line", "default": "EST. 2026" }
   ],
   "presets": [
