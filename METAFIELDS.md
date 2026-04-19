@@ -26,6 +26,40 @@ Used on drop collections (Saturday Morning, After School, etc.).
 | `tct.ritual_tagline` | single-line text | yes | `Saturday morning, properly dressed.` | Displayed under drop name |
 | `tct.air_date` | date | optional | `2026-04-26` | Drop launch date |
 
+Here are anchored regexes for each field, tuned to the examples in the doc. All are case-sensitive (matches the lowercase choice lists).
+
+## Product metafields (`tct.*`)
+
+| Key              | Regex                                            |
+| ---------------- | ------------------------------------------------ |
+| `slot_time`      | `^(1[0-2]\|[1-9]):[0-5][0-9] (AM\|PM)$`          |
+| `run_position`   | `^\d{2} / \d{2}$`                                |
+| `run_size`       | `^[1-9]\d*$`                                     |
+| `card_color`     | `^(mustard\|teal\|rose\|ink\|tangerine\|cream)$` |
+| `short_desc`     | `^[^\r\n]{1,160}\.$`                             |
+| `title_card_svg` | `^\s*<svg\b[\s\S]*<\/svg>\s*$`                   |
+| `fabric`         | `^[^\r\n]{1,80}$`                                |
+| `hangtag_prefix` | `^\d{3}$`                                        |
+
+## Collection metafields (`tct.*`)
+
+| Key              | Regex                                              |
+| ---------------- | -------------------------------------------------- |
+| `drop_number`    | `^\d{2}$`                                          |
+| `drop_status`    | `^(airing\|next\|soon\|archived)$`                 |
+| `ritual_tagline` | `^[^\r\n]{1,120}\.$`                               |
+| `air_date`       | `^\d{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[12]\d\|3[01])$` |
+
+Notes on the judgment calls:
+
+- **`slot_time`** — 12-hour with `AM`/`PM` in caps, matching `8:00 AM`. Swap to `^([01]\d\|2[0-3]):[0-5]\d$` if you ever move to 24-hour.
+- **`run_position`** — enforces the `01 / 06` spacing exactly, since the grid depends on it.
+- **`short_desc` / `ritual_tagline`** — require a trailing period and ban line breaks. Length caps (160/120) are soft guards for card layout; loosen if you hit them.
+- **`title_card_svg`** — structural check only (starts with `<svg`, ends with `</svg>`). Can't verify SVG validity with a regex.
+- **`air_date`** — validates month/day ranges but won't catch Feb 30; treat as good-enough for data entry.
+
+Paste these into a metafield validation rule in Shopify admin (Settings → Custom data → field → Validations → "Matches regex") to enforce them at the source.
+
 ## Shop-level metafields (optional — theme settings also cover these)
 
 These live on the shop and are edited via theme customizer settings. See `config/settings_schema.json`.
@@ -46,3 +80,4 @@ Every product description, collection description, and metafield value is review
 - Always "The [Noun]" for piece names
 
 Theme does not lint copy — this is editorial discipline at data-entry time.
+
